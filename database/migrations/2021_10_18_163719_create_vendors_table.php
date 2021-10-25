@@ -21,12 +21,13 @@ class CreateVendorsTable extends Migration
             $table->string("email")->nullable();
             $table->string("profile_image")->default('profile_image_icon.png');
             $table->string("type")->nullable();
+            $table->string("status")->default('Active');
             $table->integer("balance")->default(0);
             $table->integer("opening_balance")->default(0);
 
             $table->bigInteger('created_by')->unsigned()->comment('This is admin, and value is comming from admins table');
             $table->foreign('created_by')->references('id')->on('admins');
-            
+
             $table->timestamps();
         });
     }

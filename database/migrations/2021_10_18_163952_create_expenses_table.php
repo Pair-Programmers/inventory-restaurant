@@ -23,7 +23,7 @@ class CreateExpensesTable extends Migration
             $table->foreign('expense_category_id')->references('id')->on('expense_categories');
             $table->bigInteger('created_by')->unsigned()->comment('This is admin, and value is comming from admins table');
             $table->foreign('created_by')->references('id')->on('admins');
-            
+
 
             $table->timestamps();
         });

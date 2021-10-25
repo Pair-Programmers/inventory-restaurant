@@ -5,20 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Account extends Model
+class Invoice extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'account_title',
+        'ammount',
+        'no_of_items',
+        'no_of_products',
+        'date',
+        'discount',
+        'reference_no',
+        'description',
         'type',
-        'account_number',
-        'bank_name',
-        'as_off_date',
-        'opening_balance',
-        'balance',
+        'customer_id',
+        'vendor_id',
         'created_by',
     ];
-
 }

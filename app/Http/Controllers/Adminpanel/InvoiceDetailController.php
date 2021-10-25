@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Adminpanel;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class InvoiceDetailController extends Controller
 {
     /**
      * Display a listing of the resource.
