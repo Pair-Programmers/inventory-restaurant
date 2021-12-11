@@ -21,7 +21,7 @@ class CreateInvoicesTable extends Migration
             $table->date('date');
             $table->integer('discount')->default(0);
             $table->integer('reference_no')->nullable();
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->string('type');
 
             $table->bigInteger('customer_id')->unsigned()->nullable();

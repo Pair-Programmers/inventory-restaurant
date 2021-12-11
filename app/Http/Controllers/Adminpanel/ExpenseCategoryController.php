@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Adminpanel;
 
 use App\Http\Controllers\Controller;
+use App\Models\ExpenseCategory;
 use Illuminate\Http\Request;
 
 class ExpenseCategoryController extends Controller
@@ -14,7 +15,9 @@ class ExpenseCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = ExpenseCategory::orderby('id', 'DESC')->get();
+
+        return view('adminpanel.pages.exp_category_list', compact('categories'));
     }
 
     /**
@@ -24,7 +27,8 @@ class ExpenseCategoryController extends Controller
      */
     public function create()
     {
-        //
+        $categories = ExpenseCategory::orderby('id', 'DESC')->get();
+        return view('adminpanel.pages.exp_category_list', compact('categories'));
     }
 
     /**
@@ -35,7 +39,8 @@ class ExpenseCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        ExpenseCategory::create(['name'=>$request->name, 'created_by'=>1]);
+        return redirect()->back();
     }
 
     /**
@@ -57,7 +62,11 @@ class ExpenseCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = ExpenseCategory::find($id);
+        if($category){
+            return view('adminpanel.pages.exp_category_edit', compact('category'));
+        }
+        return redirect()->back()->with(['error'=>'Category not found !']);
     }
 
     /**
@@ -69,7 +78,12 @@ class ExpenseCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = ExpenseCategory::find($id);
+        if($category){
+            $category->update($request->all());
+            return redirect()->route('admin.expense.category.index');
+        }
+        return redirect()->back()->with(['error'=>'Category not found !']);
     }
 
     /**
@@ -80,6 +94,11 @@ class ExpenseCategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = ExpenseCategory::find($id);
+        if($category){
+            $category->delete();
+            return response()->json(['success'=>'Category deleted successfully !']);
+        }
+        return response()->json(['error'=>'Category not found !']);
     }
 }

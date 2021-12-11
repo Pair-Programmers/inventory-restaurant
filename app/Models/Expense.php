@@ -13,7 +13,20 @@ class Expense extends Model
         'date',
         'amount',
         'note',
+        'images',
         'expense_category_id',
         'created_by',
     ];
+
+    public function category()
+    {
+        return $this->hasOne(ExpenseCategory::class, 'id', 'expense_category_id');
+    }
+
+    public function creator()
+    {
+        return $this->hasOne(Admin::class, 'id', 'created_by');
+    }
+
+
 }

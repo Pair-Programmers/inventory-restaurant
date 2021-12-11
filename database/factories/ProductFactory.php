@@ -26,7 +26,8 @@ class ProductFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'price' => $this->faker->numberBetween($min = 10, $max = 5000),
+            'cost_price' => $this->faker->numberBetween($min = 10, $max = 5000),
+            'sale_price' => $this->faker->numberBetween($min = 10, $max = 5000),
             'opening_qty' => $this->faker->numberBetween($min = 10, $max = 50),
             'available_qty' => $this->faker->numberBetween($min = 10, $max = 50),
             'type' => $this->faker->randomElement(['Active', 'Inactive']),

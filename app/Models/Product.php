@@ -11,7 +11,8 @@ class Product extends Model
 
     protected $fillable = [
         'name',
-        'price',
+        'cost_price',
+        'sale_price',
         'opening_qty',
         'available_qty',
         'type',
@@ -24,4 +25,14 @@ class Product extends Model
         'product_subcategory_id',
         'created_by',
     ];
+
+    public function category()
+    {
+        return $this->hasOne(ProductCategory::class, 'id', 'product_category_id');
+    }
+
+    public function creator()
+    {
+        return $this->hasOne(Admin::class, 'id', 'created_by');
+    }
 }

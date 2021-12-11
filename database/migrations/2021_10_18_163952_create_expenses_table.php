@@ -17,7 +17,8 @@ class CreateExpensesTable extends Migration
             $table->id()->unsigned();
             $table->date("date");
             $table->integer("amount");
-            $table->string("note")->nullable();
+            $table->longText("note")->nullable();
+            $table->string("images")->default("[]");
 
             $table->bigInteger('expense_category_id')->unsigned();
             $table->foreign('expense_category_id')->references('id')->on('expense_categories');

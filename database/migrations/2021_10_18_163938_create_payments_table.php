@@ -19,7 +19,7 @@ class CreatePaymentsTable extends Migration
             $table->date('date');
             $table->string('group');
             $table->string('type')->nullable();
-            $table->string('note')->nullable();
+            $table->longText('note')->nullable();
             //foreign keys
             $table->bigInteger('customer_id')->unsigned()->nullable();
             $table->foreign('customer_id')->references('id')->on('customers');
