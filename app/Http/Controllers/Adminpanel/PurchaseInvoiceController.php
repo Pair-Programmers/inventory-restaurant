@@ -9,10 +9,11 @@ use App\Models\Invoice;
 use App\Models\InvoiceDetail;
 use App\Models\Payment;
 use App\Models\Product;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class InvoiceController extends Controller
+class PurchaseInvoiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,8 +23,8 @@ class InvoiceController extends Controller
     public function index()
     {
         //$products = Product::with('category', 'creator')->orderby('id', 'desc')->get();
-        $invoices = Invoice::where('type', 'Sale Invoice')->orderby('id', 'desc')->get();
-        return view('adminpanel.pages.sale_invoice_list', compact('invoices'));
+        $invoices = Invoice::where('type', 'Purchase Invoice')->orderby('id', 'desc')->get();
+        return view('adminpanel.pages.purchase_invoice_list', compact('invoices'));
     }
 
     /**
@@ -34,9 +35,9 @@ class InvoiceController extends Controller
     public function create()
     {
         $accounts = Account::all();
-        $customers = Customer::all();
+        $vendors = Vendor::all();
         $products = Product::with('category', 'creator')->orderby('id', 'desc')->get();
-        return view('adminpanel.pages.sale_invoice_create', compact('products', 'customers', 'accounts'));
+        return view('adminpanel.pages.purchase_invoice_create', compact('products', 'vendors', 'accounts'));
 
     }
 
@@ -49,7 +50,7 @@ class InvoiceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'customer_id'=> 'required',
+            'vendor_id'=> 'required',
             'product_id'=> 'required',
         ]);
 
@@ -60,7 +61,7 @@ class InvoiceController extends Controller
         }
         $inputs['no_of_items'] = $no_of_items;
         $inputs['no_of_products'] = sizeof($inputs['product_id']);
-        $inputs['type'] = 'Sale Invoice';
+        $inputs['type'] = 'Purchase Invoice';
         $inputs['created_by'] = Auth::id();
         $inputs['amount'] = intval($inputs['amount']);
         $product_ids = $inputs['product_id'];
@@ -79,8 +80,8 @@ class InvoiceController extends Controller
                              'invoice_id'=>$invoice->id]);
         }
 
-        Payment::create(['amount'=>intval($inputs['amount']), 'payment_date'=>date('Y-m-d'), 'group'=>'In', 'note'=>'Created Auto By System',
-         'type'=>'Sale', 'invoice_id'=>$invoice->id, 'account_id'=>$request->account_id,  'created_by'=>Auth::id()]);
+        Payment::create(['amount'=>intval($inputs['amount']), 'payment_date'=>date('Y-m-d'), 'group'=>'Out', 'note'=>'Created Auto By System',
+        'type'=>'Purchase', 'invoice_id'=>$invoice->id, 'account_id'=>$request->account_id,  'created_by'=>Auth::id()]);
 
         if($request->button == 'Save & Print'){
             return redirect()->back()->with('success', 'Created & Sent For Print Successfuly !');
@@ -107,9 +108,9 @@ class InvoiceController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::find($id);
-        $categories = ProductCategory::all();
-        return view('adminpanel.pages.product_edit', compact('product', 'categories'));
+        // $product = Product::find($id);
+        // $categories = ProductCategory::all();
+        // return view('adminpanel.pages.product_edit', compact('product', 'categories'));
     }
 
     /**

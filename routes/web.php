@@ -74,6 +74,30 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     });
 
+    //Employee
+    Route::prefix('employee')->name('employee.')->group(function(){
+        Route::get('/index', [App\Http\Controllers\Adminpanel\EmployeeController::class, 'index'])->name('index');
+        Route::get('/create', [App\Http\Controllers\Adminpanel\EmployeeController::class, 'create'])->name('create');
+        Route::post('/store', [App\Http\Controllers\Adminpanel\EmployeeController::class, 'store'])->name('store');
+        Route::get('/show/{id}', [App\Http\Controllers\Adminpanel\EmployeeController::class, 'show'])->name('show');
+        Route::get('/edit/{id}', [App\Http\Controllers\Adminpanel\EmployeeController::class, 'edit'])->name('edit');
+        Route::post('/update/{id}', [App\Http\Controllers\Adminpanel\EmployeeController::class, 'update'])->name('update');
+        Route::get('/destroy/{id}', [App\Http\Controllers\Adminpanel\EmployeeController::class, 'destroy'])->name('destroy');
+
+    });
+
+    //Payment
+    Route::prefix('payment')->name('payment.')->group(function(){
+        Route::get('/index', [App\Http\Controllers\Adminpanel\PaymentController::class, 'index'])->name('index');
+        Route::get('/create', [App\Http\Controllers\Adminpanel\PaymentController::class, 'create'])->name('create');
+        Route::post('/store', [App\Http\Controllers\Adminpanel\PaymentController::class, 'store'])->name('store');
+        Route::get('/show/{id}', [App\Http\Controllers\Adminpanel\PaymentController::class, 'show'])->name('show');
+        Route::get('/edit/{id}', [App\Http\Controllers\Adminpanel\PaymentController::class, 'edit'])->name('edit');
+        Route::post('/update/{id}', [App\Http\Controllers\Adminpanel\PaymentController::class, 'update'])->name('update');
+        Route::get('/destroy/{id}', [App\Http\Controllers\Adminpanel\PaymentController::class, 'destroy'])->name('destroy');
+
+    });
+
     //Sale Invoice
     Route::prefix('sale_invoice')->name('sale_invoice.')->group(function(){
 
@@ -84,6 +108,19 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::get('/edit/{id}', [App\Http\Controllers\Adminpanel\InvoiceController::class, 'edit'])->name('edit');
         Route::post('/update/{id}', [App\Http\Controllers\Adminpanel\InvoiceController::class, 'update'])->name('update');
         Route::get('/destroy/{id}', [App\Http\Controllers\Adminpanel\InvoiceController::class, 'destroy'])->name('destroy');
+
+    });
+
+    //Sale Invoice
+    Route::prefix('purchase_invoice')->name('purchase_invoice.')->group(function(){
+
+        Route::get('/index', [App\Http\Controllers\Adminpanel\PurchaseInvoiceController::class, 'index'])->name('index');
+        Route::get('/create', [App\Http\Controllers\Adminpanel\PurchaseInvoiceController::class, 'create'])->name('create');
+        Route::post('/store', [App\Http\Controllers\Adminpanel\PurchaseInvoiceController::class, 'store'])->name('store');
+        Route::get('/show/{id}', [App\Http\Controllers\Adminpanel\PurchaseInvoiceController::class, 'show'])->name('show');
+        Route::get('/edit/{id}', [App\Http\Controllers\Adminpanel\PurchaseInvoiceController::class, 'edit'])->name('edit');
+        Route::post('/update/{id}', [App\Http\Controllers\Adminpanel\PurchaseInvoiceController::class, 'update'])->name('update');
+        Route::get('/destroy/{id}', [App\Http\Controllers\Adminpanel\PurchaseInvoiceController::class, 'destroy'])->name('destroy');
 
     });
 

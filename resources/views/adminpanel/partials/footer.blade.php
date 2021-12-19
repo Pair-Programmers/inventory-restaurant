@@ -1,8 +1,8 @@
 <div class="footer">
     <div class="pull-right">
-        www.idenbrid.com
+        www.pairprogrammers.pk
     </div>
     <div>
-        <strong>Copyright</strong> Idenbrid Inc &copy; 2021
+        <strong>Copyright</strong> Pair Programmers &copy; 2020
     </div>
 </div>

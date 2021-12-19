@@ -68,7 +68,8 @@
 <script src="{{ asset('adminpanel') }}/js/plugins/toastr/toastr.min.js"></script>
 <!-- DataTable -->
 <script src="{{asset('adminpanel')}}/js/plugins/dataTables/datatables.min.js"></script>
-
+ <!-- Sparkline -->
+ <script src="{{asset('adminpanel')}}/js/plugins/sparkline/jquery.sparkline.min.js"></script>
 <script>
     $(document).ready(function () {
 
@@ -265,6 +266,38 @@
             buttondown_class: 'btn btn-white',
             buttonup_class: 'btn btn-white'
         });
+
+        var sparklineCharts = function(){
+             $("#sparkline1").sparkline([34, 43, 43, 35, 44, 32, 44, 52], {
+                 type: 'line',
+                 width: '100%',
+                 height: '60',
+                 lineColor: '#1ab394',
+                 fillColor: "#ffffff"
+             });
+
+
+
+             $("#sparkline3").sparkline([74, 43, 23, 55, 54, 32, 24, 12], {
+                 type: 'line',
+                 width: '100%',
+                 height: '60',
+                 lineColor: '#ed5565',
+                 fillColor: "#ffffff"
+             });
+
+
+
+        };
+
+        var sparkResize;
+
+        $(window).resize(function(e) {
+            clearTimeout(sparkResize);
+            sparkResize = setTimeout(sparklineCharts, 500);
+        });
+
+        sparklineCharts();
 
 
     });

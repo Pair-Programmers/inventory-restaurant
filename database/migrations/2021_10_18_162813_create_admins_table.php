@@ -31,12 +31,7 @@ class CreateAdminsTable extends Migration
             $table->timestamps();
         });
 
-        \App\Models\Admin::create([  'name' => 'Hamza Saqib',
-                        'email' => 'admin@gmail.com',
-                        'role' => 'Super Admin',
-                        'phone' => '03239991999',
-                        'profile_image' => 'admin_profile.jpg',
-                        'password' => Hash::make('admin123')]);
+        
     }
 
     /**

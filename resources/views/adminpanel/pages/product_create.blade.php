@@ -11,13 +11,13 @@
 @section('content')
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-10">
-            <h2>Create News</h2>
+            <h2>Create Product</h2>
             <ol class="breadcrumb">
                 <li>
                     <a href="index.html">Home</a>
                 </li>
                 <li>
-                    <a>News</a>
+                    <a>Product</a>
                 </li>
                 <li class="active">
                     <strong>Create</strong>
@@ -28,6 +28,14 @@
 
         </div>
     </div>
+
+    @error('product_category_id')
+        <div class="alert alert-danger" style="margin-top: 20px">Please Select Category</div>
+    @enderror
+    @error('name')
+        <div class="alert alert-danger" style="margin-top: 20px">Please Enter Name</div>
+    @enderror
+
 
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
@@ -54,7 +62,7 @@
 
                     </div>
 
-                    <div class="form-group">j
+                    <div class="form-group">
                         <label class="col-sm-2 control-label">Category</label>
 
                         <div class="col-sm-4">
@@ -142,4 +150,34 @@
             });
         });
     </script>
+
+<script>
+    var Success = `{{\Session::has('success')}}`;
+    var Error = `{{\Session::has('error')}}`;
+
+    if (Success) {
+        setTimeout(function() {
+            toastr.options = {
+                closeButton: true,
+                progressBar: true,
+                showMethod: 'slideDown',
+                timeOut: 7000
+            };
+            toastr.success('Success Message', `{{\Session::get('success')}}`);
+
+        }, 1200);
+    }
+    else if(Error){
+        setTimeout(function() {
+                toastr.options = {
+                    closeButton: true,
+                    progressBar: true,
+                    showMethod: 'slideDown',
+                    timeOut: 4000
+                };
+                toastr.error('Failure Message', `{{\Session::get('error')}}`);
+
+            }, 1200);
+    }
+</script>
 @endsection

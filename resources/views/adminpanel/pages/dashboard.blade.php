@@ -16,14 +16,14 @@
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         {{-- <span class="label label-success pull-right">Monthly</span> --}}
-                        <h5>Registered Users</h5>
+                        <h5>Cash in Counter</h5>
                     </div>
                     <div class="ibox-content">
                         <a href="{{route('admin.login')}}">
 
-                            <h1 class="no-margins">{{$noOfUsers}}</h1>
+                            <h1 class="no-margins">{{$account1->balance}}</h1>
                             {{-- <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div> --}}
-                            <small>Total No. Of Registered Users</small>
+                            <small>Total cash available</small>
                         </a>
                     </div>
                 </div>
@@ -32,27 +32,30 @@
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         {{-- <span class="label label-info pull-right">Annual</span> --}}
-                        <h5>Candidate</h5>
+                        <h5>Cash in Bank Account</h5>
                     </div>
                     <div class="ibox-content">
                         <a href="{{route('admin.login')}}">
-                            <h1 class="no-margins">{{$noOfCandidate}}</h1>
+                            <h1 class="no-margins">{{$account2->balance}}</h1>
                             {{-- <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div> --}}
-                            <small>Total No. Of Candidate</small>
+                            <small>Total cash available in Bank</small>
                         </a>
                     </div>
                 </div>
             </div>
+
             <div class="col-lg-3">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        {{-- <span class="label label-info pull-right">Annual</span> --}}
-                        <h5>Company</h5>
+                        {{-- <span class="label label-primary pull-right">Today</span> --}}
+                        <h5>Total Sale</h5>
                     </div>
                     <div class="ibox-content">
-                        <h1 class="no-margins">{{$noOfCompany}}</h1>
-                        {{-- <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div> --}}
-                        <small>Total No.Of Registered Company</small>
+                        <a href="{{route('admin.sale_invoice.index')}}">
+                            <h1 class="no-margins">{{$totalSale}}</h1>
+                            {{-- <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div> --}}
+                            <small>Total Amount of Sale Invoices</small>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -60,30 +63,13 @@
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         {{-- <span class="label label-primary pull-right">Today</span> --}}
-                        <h5>Contact Us Messeges</h5>
+                        <h5>Total Purchase</h5>
                     </div>
                     <div class="ibox-content">
-                        <a href="{{route('admin.login')}}">
-                            <h1 class="no-margins">{{$noOfContactusMessages}}</h1>
+                        <a href="{{route('admin.purchase_invoice.index')}}">
+                            <h1 class="no-margins">{{$totalPurchase}}</h1>
                             {{-- <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div> --}}
-                            <small>Total No. Of Contact Us Messeges</small>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        {{-- <span class="label label-danger pull-right">Low value</span> --}}
-                        <h5>News</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <a href="{{route('admin.login')}}">
-                            <h1 class="no-margins">{{$noOfActiveNews + $noOfDeActiveNews}}</h1>
-                            <!-- <div class="stat-percent font-bold">38% <i class="fa fa-level-down"></i></div>  -->
-                            <!-- <small>Total No. Of News</small><br> -->
-                            <small>Active <b>{{$noOfActiveNews}}</b> </small><br>
-                            <small>InActive <b>{{$noOfDeActiveNews}}</b> </small>
+                            <small>Total Amount of Purchase Invoices</small>
                         </a>
                     </div>
                 </div>
@@ -92,16 +78,87 @@
             <div class="col-lg-3">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        {{-- <span class="label label-danger pull-right">Low value</span> --}}
-                        <h5>Categories</h5>
+                        {{-- <span class="label label-primary pull-right">Today</span> --}}
+                        <h5>Total Expense</h5>
                     </div>
                     <div class="ibox-content">
-                        <h1 class="no-margins"></h1>
-                        {{-- <div class="stat-percent font-bold text-danger">38% <i class="fa fa-level-down"></i></div> --}}
-                        <small>Total Categories</small>
+                        <a href="{{route('admin.expense.index')}}">
+                            <h1 class="no-margins">{{$totalExpense}}</h1>
+                            {{-- <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div> --}}
+                            <small>Total Expense Amount</small>
+                        </a>
                     </div>
                 </div>
             </div>
+
+
+            <div class="col-lg-3">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        {{-- <span class="label label-primary pull-right">Today</span> --}}
+                        <h5>Total Products</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <a href="{{route('admin.product.index')}}">
+                            <h1 class="no-margins">{{$totalProducts}}</h1>
+                            {{-- <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div> --}}
+                            <small>Total Products Registered</small>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row">
+            @if ($paymentIn > $paymentOut)
+            <div class="col-lg-3">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <h5>Profit</h5>
+                        <h2>{{$paymentIn-$paymentOut}} Rs.</h2>
+                        <div id="sparkline1"></div>
+                    </div>
+                </div>
+            </div>
+            @else
+            <div class="col-lg-3">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <h5>Loss</h5>
+                        <h2>{{$paymentIn-$paymentOut}} Rs.</h2>
+                        <div id="sparkline3"></div>
+                    </div>
+                </div>
+            </div>
+            @endif
+            <div class="col-lg-3">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <h5 class="m-b-md">Payment In</h5>
+                        <h2 class="text-navy">
+                            <i class="fa fa-play fa-rotate-270"></i> {{$paymentIn}}
+                        </h2>
+                        <small>All Payments</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <h5 class="m-b-md">Payment Out</h5>
+                        <h2 class="text-danger">
+                            <i class="fa fa-play fa-rotate-90"></i> {{$paymentOut}}
+                        </h2>
+                        <small>All Payments</small>
+                    </div>
+                </div>
+            </div>
+
+
+
+
         </div>
     </div>
 @endsection
@@ -135,6 +192,9 @@
                 })
             });
         });
+
+
     });
 </script>
+
 @endsection

@@ -17,9 +17,9 @@ class CreateExpenseCategoriesTable extends Migration
             $table->id()->unsigned();
             $table->string('name');
 
-            $table->bigInteger('created_by')->unsigned()->comment('This is admin, and value is comming from admins table');
+            $table->bigInteger('created_by')->unsigned();
             $table->foreign('created_by')->references('id')->on('admins');
-            
+
             $table->timestamps();
         });
     }

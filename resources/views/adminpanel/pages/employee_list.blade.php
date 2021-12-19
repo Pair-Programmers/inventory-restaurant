@@ -12,13 +12,13 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2 >List of Contact Us Messages</h2>
+        <h2 >List of Employees</h2>
         <ol class="breadcrumb">
             <li>
                 <a href="index.html">Home</a>
             </li>
             <li>
-                <a>Contact Us Messages</a>
+                <a>Employees</a>
             </li>
             <li class="active">
                 <strong> List</strong>
@@ -63,10 +63,12 @@
             <thead>
             <tr>
                 <th>No.</th>
-                <th>Date</th>
-                <th>Amount</th>
-                <th>Account</th>
-                <th>Category</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Salary</th>
+                <th>Role</th>
+                <th>CNIC</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -75,19 +77,21 @@
                 $counter = 1;
             @endphp
 
-            @foreach($expenses as $expense)
-                <tr class="gradeX" id="row-{{$expense->id}}">
+            @foreach($employees as $employee)
+                <tr class="gradeX" id="row-{{$employee->id}}">
                     <td>{{$counter}}</td>
-                    <td class="center">{{date('d-m-Y', strtotime($expense->date))}}</td>
-                    <td class="center">{{$expense->amount}}</td>
-                    <td class="center">{{$expense->account->name}}</td>
-                    <td class="center">{{$expense->category->name}}</td>
+                    <td class="center">{{$employee->name}}</td>
+                    <td class="center">{{$employee->phone}}</td>
+                    <td class="center">{{$employee->email}}</td>
+                    <td class="center">{{$employee->salary}}</td>
+                    <td class="center">{{$employee->role}}</td>
+                    <td class="center">{{$employee->cnic}}</td>
 
                     <td>
-                        <a href="{{ route('admin.expense.edit', $expense->id) }}">
+                        <a href="{{ route('admin.employee.edit', $employee->id) }}">
                             <small class="label label-primary"><i class="fa"></i>Edit</small>
                         </a>
-                        <a onclick="deleteExpense({{$expense->id}})">
+                        <a onclick="deleteEmployee({{$employee->id}})">
                             <small class="label label-danger"><i class="fa"></i>Delete</small>
                         </a>
                     </td>
@@ -103,10 +107,12 @@
             <tfoot>
             <tr>
                 <th>No.</th>
-                <th>Date</th>
-                <th>Amount</th>
-                <th>Account</th>
-                <th>Category</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Salary</th>
+                <th>Role</th>
+                <th>CNIC</th>
                 <th>Action</th>
             </tr>
             </tfoot>
@@ -178,7 +184,7 @@
     }
 </script>
 <script>
-    function deleteExpense(id) {
+    function deleteEmployee(id) {
     swal({
 
         title: "You really want to delete ？", // You really want to delete ?
@@ -195,11 +201,11 @@
         if (isConfirm) {
             $.ajax({
                 method: 'GET',
-                url: "{{ route('admin.expense.destroy', '') }}/" + id,
+                url: "{{ route('admin.employee.destroy', '') }}/" + id,
                 success: function(response) {
                     console.log(response);
                     if(response.success){
-                        swal("Deleted!", "News has been deleted.", "success");
+                        swal("Deleted!", "Employee has been deleted.", "success");
                         $("#row-"+id).remove();
                     }
                     else if(response.error){

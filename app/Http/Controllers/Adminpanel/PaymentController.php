@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Adminpanel;
 
 use App\Http\Controllers\Controller;
+use App\Models\Account;
+use App\Models\Employee;
+use App\Models\Payment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
@@ -14,7 +18,8 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        //
+        $payments = Payment::orderby('id', 'desc')->get();
+        return view('adminpanel.pages.payment_list', compact('payments'));
     }
 
     /**
@@ -24,7 +29,10 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        //
+        $employees = Employee::all();
+        $accounts = Account::all();
+        return view('adminpanel.pages.payment_create', compact('employees', 'accounts'));
+
     }
 
     /**
@@ -35,7 +43,12 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $inputs = $request->all();
+
+
+        $inputs['created_by'] = Auth::id();
+        Payment::create($inputs);
+        return redirect()->back()->with('success', 'Created Successfuly !');
     }
 
     /**
@@ -57,7 +70,10 @@ class PaymentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $accounts = Account::all();
+        $employees = Employee::all();
+        $payment = Payment::find($id);
+        return view('adminpanel.pages.payment_edit', compact('payment', 'employees', 'accounts'));
     }
 
     /**
@@ -69,7 +85,16 @@ class PaymentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $expense = Payment::find($id);
+
+        $inputs = $request->all();
+
+        $inputs['created_by'] = Auth::id();
+        if($expense){
+            $expense->update($inputs);
+            return redirect()->back()->with('success', 'Created Successfuly !');
+        }
+        return redirect()->back()->with('error', 'Error while creating !');
     }
 
     /**
@@ -80,6 +105,11 @@ class PaymentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $expense = Payment::find($id);
+        if($expense){
+            $expense->delete();
+            return response()->json(['success'=>'Expense deleted successfully !']);
+        }
+        return response()->json(['error'=>'Expense not found !']);
     }
 }

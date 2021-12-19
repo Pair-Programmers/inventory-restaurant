@@ -3,6 +3,11 @@
 namespace App\Http\Controllers\Adminpanel;
 
 use App\Http\Controllers\Controller;
+use App\Models\Account;
+use App\Models\Expense;
+use App\Models\Invoice;
+use App\Models\Payment;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class DashboardrController extends Controller
@@ -14,15 +19,17 @@ class DashboardrController extends Controller
      */
     public function index()
     {
-        $notifications = 0;//auth()->user()->unreadNotifications()->orderby('created_at', 'DESC')->limit(5)->get();
-        $noOfUsers = 0;//User::count();
-        $noOfCandidate = 0;//Candidate::count();
-        $noOfCompany = 0;//Company::count();
-        $noOfContactusMessages = 0;//ContactUs::where('status', 'Not Reviewed')->count();
-        $noOfActiveNews = 0;//News::where('status', 'Active')->count();
-        $noOfDeActiveNews = 0;//News::where('status', 'DeActive')->count();
+        $account1 = Account::find(1);
+        $account2 = Account::find(2);
+        $totalSale = Invoice::where('type', 'Sale Invoice')->sum('amount');
+        $totalPurchase = Invoice::where('type', 'Purchase Invoice')->sum('amount');
+        $totalProducts = Product::count('id');
+        $totalExpense = Expense::sum('amount');
+        $paymentIn = Payment::where('group', 'In')->sum('amount');
+        $paymentOut = Payment::where('group', 'Out')->sum('amount');
 
-        return view('adminpanel/pages/dashboard', compact('noOfUsers', 'noOfCandidate', 'noOfCompany', 'noOfContactusMessages', 'noOfActiveNews', 'noOfDeActiveNews', 'notifications'));
+        return view('adminpanel/pages/dashboard', compact('account1', 'account2', 'totalSale',
+         'totalPurchase', 'totalProducts', 'totalExpense', 'paymentIn', 'paymentOut'));
     }
 
     /**

@@ -11,16 +11,16 @@
 @section('content')
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-10">
-            <h2>Create News</h2>
+            <h2>Edit Product</h2>
             <ol class="breadcrumb">
                 <li>
                     <a href="index.html">Home</a>
                 </li>
                 <li>
-                    <a>News</a>
+                    <a>Product</a>
                 </li>
                 <li class="active">
-                    <strong>Create</strong>
+                    <strong>Edit</strong>
                 </li>
             </ol>
         </div>
@@ -147,4 +147,34 @@
             });
         });
     </script>
+
+<script>
+    var Success = `{{\Session::has('success')}}`;
+    var Error = `{{\Session::has('error')}}`;
+
+    if (Success) {
+        setTimeout(function() {
+            toastr.options = {
+                closeButton: true,
+                progressBar: true,
+                showMethod: 'slideDown',
+                timeOut: 7000
+            };
+            toastr.success('Success Message', `{{\Session::get('success')}}`);
+
+        }, 1200);
+    }
+    else if(Error){
+        setTimeout(function() {
+                toastr.options = {
+                    closeButton: true,
+                    progressBar: true,
+                    showMethod: 'slideDown',
+                    timeOut: 4000
+                };
+                toastr.error('Failure Message', `{{\Session::get('error')}}`);
+
+            }, 1200);
+    }
+</script>
 @endsection

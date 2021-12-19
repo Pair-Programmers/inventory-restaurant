@@ -25,7 +25,7 @@ class CreateCustomersTable extends Migration
             $table->integer("balance")->default(0);
             $table->integer("opening_balance")->default(0);
 
-            $table->bigInteger('created_by')->unsigned()->comment('This is admin, and value is comming from admins table');
+            $table->bigInteger('created_by')->unsigned();
             $table->foreign('created_by')->references('id')->on('admins');
 
             $table->timestamps();

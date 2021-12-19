@@ -15,6 +15,7 @@ class Expense extends Model
         'note',
         'images',
         'expense_category_id',
+        'account_id',
         'created_by',
     ];
 
@@ -26,6 +27,11 @@ class Expense extends Model
     public function creator()
     {
         return $this->hasOne(Admin::class, 'id', 'created_by');
+    }
+
+    public function account()
+    {
+        return $this->hasOne(Account::class, 'id', 'account_id');
     }
 
 

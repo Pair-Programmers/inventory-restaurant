@@ -25,7 +25,7 @@ class AccountFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'account_title' => $this->faker->name(),
-            'type' => $this->faker->randomElement(['Jazcash', 'Bank', 'Easypaisa']),
+            'type' => $this->faker->randomElement(['Cash', 'Jazcash', 'Bank', 'Easypaisa']),
             'account_number' => $this->faker->numerify('###############'),
             'bank_name' => $this->faker->randomElement(['Active', 'Inactive']),
             'as_off_date' => $this->faker->date($format = 'Y-m-d', $max = '2010-01-01'),

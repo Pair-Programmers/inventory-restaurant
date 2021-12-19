@@ -20,9 +20,11 @@ class CreateExpensesTable extends Migration
             $table->longText("note")->nullable();
             $table->string("images")->default("[]");
 
+            $table->bigInteger('account_id')->unsigned();
+            $table->foreign('account_id')->references('id')->on('accounts');
             $table->bigInteger('expense_category_id')->unsigned();
             $table->foreign('expense_category_id')->references('id')->on('expense_categories');
-            $table->bigInteger('created_by')->unsigned()->comment('This is admin, and value is comming from admins table');
+            $table->bigInteger('created_by')->unsigned();
             $table->foreign('created_by')->references('id')->on('admins');
 
 

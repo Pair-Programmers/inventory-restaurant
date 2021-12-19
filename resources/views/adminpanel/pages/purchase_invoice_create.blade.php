@@ -11,13 +11,13 @@
 @section('content')
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-10">
-            <h2>Create Sale Invoice</h2>
+            <h2>Create Purchase Invoice</h2>
             <ol class="breadcrumb">
                 <li>
                     <a href="index.html">Home</a>
                 </li>
                 <li>
-                    <a>Sale Invoice</a>
+                    <a>Purchase Invoice</a>
                 </li>
                 <li class="active">
                     <strong>Create</strong>
@@ -39,8 +39,8 @@
         </div>
     @endif --}}
 
-    @error('customer_id')
-        <div class="alert alert-danger" style="margin-top: 20px">Please Select Customer</div>
+    @error('vendor_id')
+        <div class="alert alert-danger" style="margin-top: 20px">Please Select Vendor</div>
     @enderror
     @error('product_id')
         <div class="alert alert-danger" style="margin-top: 20px">Please Add Products in Cart</div>
@@ -50,21 +50,21 @@
         <div class="row">
 
             <div class="ibox-content">
-                <form method="post" class="form-horizontal" action="{{ route('admin.sale_invoice.store') }}"
+                <form method="post" class="form-horizontal" action="{{ route('admin.purchase_invoice.store') }}"
                     enctype="multipart/form-data">
                     @csrf
 
 
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">Customer</label>
+                                    <label class="col-sm-2 control-label">Vendors</label>
 
                                     <div class="col-sm-4">
                                         <div class="input-group">
                                             <select required data-placeholder="Choose a Country..." class="chosen-select"
-                                                tabindex="2" style="width:350px;" id="customerSelect" name="customer_id">
-                                                <option value="">Select Customer</option>
-                                                @foreach ($customers as $customer)
-                                                    <option value="{{ $customer->id }}">{{ $customer->name }}</option>
+                                                tabindex="2" style="width:350px;" id="customerSelect" name="vendor_id">
+                                                <option value="">Select Vendor</option>
+                                                @foreach ($vendors as $vendor)
+                                                    <option value="{{ $vendor->id }}">{{ $vendor->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -88,7 +88,6 @@
 
                                         </select>
                                     </div>
-
 
 
                                 </div>
@@ -180,27 +179,8 @@
 
                                 </div>
 
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Cash Recieved</label>
-
-                                    <div class="col-sm-2">
-                                        <input type="number" class="form-control " name="cash_recieved" value="0">
-                                    </div>
-
-                                    <label class="col-sm-1 control-label">Balance</label>
 
 
-                                    <div class="col-sm-2">
-                                        <label class="control-label">9878</label>
-                                    </div>
-
-
-
-
-                                </div>
-
-
-                                <button class="btn btn-primary" type="submit" name="button" value="Save & Print">Save & Print Invoice</button>
                                 <button class="btn btn-primary" type="submit" name="button" value="Save">Save Invoice</button>
 
 

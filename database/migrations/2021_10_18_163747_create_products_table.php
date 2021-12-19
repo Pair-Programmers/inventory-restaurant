@@ -21,7 +21,6 @@ class CreateProductsTable extends Migration
             $table->integer('sale_price');
             $table->integer('opening_qty');
             $table->integer('available_qty');
-            $table->string('type')->nullable();
             $table->string('unit')->nullable();
             $table->string('images')->nullable();
             $table->string('colors')->nullable();
@@ -32,7 +31,7 @@ class CreateProductsTable extends Migration
             $table->foreign('product_category_id')->references('id')->on('product_categories');
             $table->bigInteger('product_subcategory_id')->unsigned();
             $table->foreign('product_subcategory_id')->references('id')->on('product_sub_categories');
-            $table->bigInteger('created_by')->unsigned()->comment('This is admin, and value is comming from admins table');
+            $table->bigInteger('created_by')->unsigned();
             $table->foreign('created_by')->references('id')->on('admins');
             $table->timestamps();
         });

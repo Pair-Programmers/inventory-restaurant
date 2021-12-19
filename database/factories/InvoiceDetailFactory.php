@@ -23,11 +23,13 @@ class InvoiceDetailFactory extends Factory
      */
     public function definition()
     {
+        $sale_quantity =$this->faker->numberBetween($min = 10, $max = 50);
+        $sale_price = $this->faker->numberBetween($min = 10, $max = 5000);
         return [
             'product_id' => Product::pluck('id')->random(),
-            'quantity' => $this->faker->numberBetween($min = 10, $max = 50),
-            'unit_price' => $this->faker->numberBetween($min = 10, $max = 5000),
-            'total_ammount' => $this->faker->numberBetween($min = 10, $max = 5000),
+            'sale_quantity' => $sale_quantity,
+            'sale_price' => $sale_price,
+            'total_ammount' => $sale_price * $sale_quantity,
             'invoice_id' => Invoice::pluck('id')->random(),
         ];
     }

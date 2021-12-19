@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Adminpanel;
 
 use App\Http\Controllers\Controller;
-use App\Models\Account;
-use App\Models\Expense;
-use App\Models\ExpenseCategory;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ExpenseController extends Controller
+class EmployeeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +16,8 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $expenses = Expense::with('category', 'creator')->orderby('id', 'desc')->get();
-        return view('adminpanel.pages.expense_list', compact('expenses'));
+        $employees = Employee::orderby('id', 'desc')->get();
+        return view('adminpanel.pages.employee_list', compact('employees'));
     }
 
     /**
@@ -29,9 +27,7 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        $accounts = Account::all();
-        $categories = ExpenseCategory::all();
-        return view('adminpanel.pages.expense_create', compact('categories', 'accounts'));
+        return view('adminpanel.pages.employee_create');
 
     }
 
@@ -44,19 +40,17 @@ class ExpenseController extends Controller
     public function store(Request $request)
     {
         $inputs = $request->all();
-        $data[] = null;
-        if($request->hasfile('images'))
+
+        if($request->hasfile('profile_image'))
         {
-            foreach($request->file('images') as $key => $image)
-            {
-                $name=time().'_'. $key . '_'.$image->getClientOriginalName();
-                $image->move(public_path().'/storage/images/expense', $name);
-                $data[] = $name;
-            }
+            $imageName = time().'.'.$request->profile_image->getClientOriginalName();
+            $request->profile_image->move(public_path('storage/images/employees'), $imageName);
+            $product['profile_image'] = $imageName;
         }
-        $inputs['images'] = json_encode($data);
+
+
         $inputs['created_by'] = Auth::id();
-        Expense::create($inputs);
+        Employee::create($inputs);
         return redirect()->back()->with('success', 'Created Successfuly !');
     }
 
@@ -79,10 +73,8 @@ class ExpenseController extends Controller
      */
     public function edit($id)
     {
-        $expense = Expense::find($id);
-        $categories = ExpenseCategory::all();
-        $accounts = Account::all();
-        return view('adminpanel.pages.expense_edit', compact('expense', 'categories', 'accounts'));
+        $employee = Employee::find($id);
+        return view('adminpanel.pages.employee_edit', compact('employee'));
     }
 
     /**
@@ -94,7 +86,7 @@ class ExpenseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $expense = Expense::find($id);
+        $expense = Employee::find($id);
         $data[] = null;
         $inputs = $request->all();
         if($request->hasfile('images'))
@@ -123,7 +115,7 @@ class ExpenseController extends Controller
      */
     public function destroy($id)
     {
-        $expense = Expense::find($id);
+        $expense = Employee::find($id);
         if($expense){
             $expense->delete();
             return response()->json(['success'=>'Expense deleted successfully !']);

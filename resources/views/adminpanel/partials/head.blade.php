@@ -2,7 +2,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    
     @yield('title-meta')
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -37,7 +37,7 @@
     <link href="{{asset('adminpanel')}}/css/plugins/select2/select2.min.css" rel="stylesheet">
 
     <link href="{{asset('adminpanel')}}/css/plugins/touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet">
-    
+
     <link href="{{asset('adminpanel')}}/css/style.css" rel="stylesheet">
     <link href="{{asset('adminpanel')}}/css/animate.css" rel="stylesheet">
 

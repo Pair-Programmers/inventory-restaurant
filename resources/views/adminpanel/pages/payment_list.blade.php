@@ -12,13 +12,13 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2 >List of Contact Us Messages</h2>
+        <h2 >List of Payments</h2>
         <ol class="breadcrumb">
             <li>
                 <a href="index.html">Home</a>
             </li>
             <li>
-                <a>Contact Us Messages</a>
+                <a>Payments</a>
             </li>
             <li class="active">
                 <strong> List</strong>
@@ -65,8 +65,10 @@
                 <th>No.</th>
                 <th>Date</th>
                 <th>Amount</th>
-                <th>Account</th>
-                <th>Category</th>
+                <th>Transaction</th>
+                <th>Type</th>
+                <th>Note</th>
+                <th>Ref #</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -75,19 +77,29 @@
                 $counter = 1;
             @endphp
 
-            @foreach($expenses as $expense)
-                <tr class="gradeX" id="row-{{$expense->id}}">
+            @foreach($payments as $payment)
+                <tr class="gradeX" id="row-{{$payment->id}}">
                     <td>{{$counter}}</td>
-                    <td class="center">{{date('d-m-Y', strtotime($expense->date))}}</td>
-                    <td class="center">{{$expense->amount}}</td>
-                    <td class="center">{{$expense->account->name}}</td>
-                    <td class="center">{{$expense->category->name}}</td>
+                    <td class="center">{{$payment->payment_date}}</td>
+                    <td class="center">{{$payment->amount}}</td>
+                    <td class="center">{{$payment->group}}</td>
+                    <td class="center">{{$payment->type}}</td>
+                    <td class="center">{{$payment->note}}</td>
+                    @if ($payment->type == 'Sale Invoice')
+
+                    @elseif ($payment->type == 'Purchase Invoice')
+                    @elseif ($payment->type == 'Expense')
+                    @elseif ($payment->type == 'Employee Salary')
+                    @elseif ($payment->type == 'Sale Invoice')
+                    @else
+                    @endif
+                    <td class="center">{{$payment->cnic}}</td>
 
                     <td>
-                        <a href="{{ route('admin.expense.edit', $expense->id) }}">
+                        <a href="{{ route('admin.payment.edit', $payment->id) }}">
                             <small class="label label-primary"><i class="fa"></i>Edit</small>
                         </a>
-                        <a onclick="deleteExpense({{$expense->id}})">
+                        <a onclick="deletePayment({{$payment->id}})">
                             <small class="label label-danger"><i class="fa"></i>Delete</small>
                         </a>
                     </td>
@@ -105,8 +117,10 @@
                 <th>No.</th>
                 <th>Date</th>
                 <th>Amount</th>
-                <th>Account</th>
-                <th>Category</th>
+                <th>Transaction</th>
+                <th>Type</th>
+                <th>Note</th>
+                <th>Ref #</th>
                 <th>Action</th>
             </tr>
             </tfoot>
@@ -178,7 +192,7 @@
     }
 </script>
 <script>
-    function deleteExpense(id) {
+    function deletePayment(id) {
     swal({
 
         title: "You really want to delete ？", // You really want to delete ?
@@ -195,11 +209,11 @@
         if (isConfirm) {
             $.ajax({
                 method: 'GET',
-                url: "{{ route('admin.expense.destroy', '') }}/" + id,
+                url: "{{ route('admin.employee.destroy', '') }}/" + id,
                 success: function(response) {
                     console.log(response);
                     if(response.success){
-                        swal("Deleted!", "News has been deleted.", "success");
+                        swal("Deleted!", "Employee has been deleted.", "success");
                         $("#row-"+id).remove();
                     }
                     else if(response.error){

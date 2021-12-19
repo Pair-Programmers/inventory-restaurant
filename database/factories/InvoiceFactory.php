@@ -25,14 +25,14 @@ class InvoiceFactory extends Factory
     public function definition()
     {
         return [
-            'ammount' => $this->faker->numberBetween($min = 10, $max = 5000000),
+            'amount' => $this->faker->numberBetween($min = 10, $max = 5000000),
             'no_of_items' => $this->faker->numberBetween($min = 10, $max = 50),
             'no_of_products' => $this->faker->numberBetween($min = 10, $max = 50),
-            'date' => $this->faker->date($format = 'Y-m-d', $max = '2010-01-01'),
+            'issue_date' => $this->faker->date($format = 'Y-m-d', $max = '2010-01-01'),
             'discount' => $this->faker->numberBetween($min = 10, $max = 200),
             'reference_no' => $this->faker->numerify('######'),
             'description' => $this->faker->paragraph(),
-            'type' => $this->faker->randomElement(['Sale Invoice', 'Purchase Invoice', 'Sale Return']),
+            'type' => $this->faker->randomElement(['Sale Invoice', 'Purchase Invoice', 'Sale Return', 'Purchase Return']),
             'customer_id' => Customer::pluck('id')->random(),
             'vendor_id' => Vendor::pluck('id')->random(),
             'created_by' => Admin::pluck('id')->random(),

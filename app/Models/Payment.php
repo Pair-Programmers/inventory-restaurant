@@ -11,12 +11,13 @@ class Payment extends Model
 
     protected $fillable = [
         'amount',
-        'date',
+        'payment_date',
         'group',
         'type',
         'note',
-        'customer_id',
-        'vendor_id',
+        'invoice_id',
+        'expense_id',
+        'employee_id',
         'account_id',
         'created_by',
     ];

@@ -12,13 +12,13 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2 >List of Contact Us Messages</h2>
+        <h2 >List of Purchase Invoices</h2>
         <ol class="breadcrumb">
             <li>
                 <a href="index.html">Home</a>
             </li>
             <li>
-                <a>Contact Us Messages</a>
+                <a>Purchase Invoices</a>
             </li>
             <li class="active">
                 <strong> List</strong>
@@ -63,10 +63,13 @@
             <thead>
             <tr>
                 <th>No.</th>
+                <th>ID/Code</th>
                 <th>Date</th>
                 <th>Amount</th>
-                <th>Account</th>
-                <th>Category</th>
+                <th># Items</th>
+                <th>Vendor</th>
+                <th>Discount</th>
+                <th>Created by</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -75,19 +78,22 @@
                 $counter = 1;
             @endphp
 
-            @foreach($expenses as $expense)
-                <tr class="gradeX" id="row-{{$expense->id}}">
+            @foreach($invoices as $invoice)
+                <tr class="gradeX" id="row-{{$invoice->id}}">
                     <td>{{$counter}}</td>
-                    <td class="center">{{date('d-m-Y', strtotime($expense->date))}}</td>
-                    <td class="center">{{$expense->amount}}</td>
-                    <td class="center">{{$expense->account->name}}</td>
-                    <td class="center">{{$expense->category->name}}</td>
+                    <td class="center">{{sprintf("%04d", $invoice->id)}}</td>
+                    <td class="center">{{date('d-m-Y', strtotime($invoice->issue_date))}}</td>
+                    <td class="center">{{$invoice->amount}}</td>
+                    <td class="center">{{$invoice->no_of_items}}</td>
+                    <td class="center">{{$invoice->vendor->name}}</td>
+                    <td class="center">{{$invoice->discount}}</td>
+                    <td class="center">{{$invoice->createdBy->name}}</td>
 
                     <td>
-                        <a href="{{ route('admin.expense.edit', $expense->id) }}">
+                        <a href="{{route('admin.sale_invoice.show', $invoice->id)}}">
                             <small class="label label-primary"><i class="fa"></i>Edit</small>
                         </a>
-                        <a onclick="deleteExpense({{$expense->id}})">
+                        <a onclick="deleteinvoice({{$invoice->id}})">
                             <small class="label label-danger"><i class="fa"></i>Delete</small>
                         </a>
                     </td>
@@ -103,10 +109,13 @@
             <tfoot>
             <tr>
                 <th>No.</th>
+                <th>ID/Code</th>
                 <th>Date</th>
                 <th>Amount</th>
-                <th>Account</th>
-                <th>Category</th>
+                <th># Items</th>
+                <th>Vendor</th>
+                <th>Discount</th>
+                <th>Created by</th>
                 <th>Action</th>
             </tr>
             </tfoot>
@@ -178,7 +187,7 @@
     }
 </script>
 <script>
-    function deleteExpense(id) {
+    function deleteProduct(id) {
     swal({
 
         title: "You really want to delete ？", // You really want to delete ?
@@ -195,7 +204,7 @@
         if (isConfirm) {
             $.ajax({
                 method: 'GET',
-                url: "{{ route('admin.expense.destroy', '') }}/" + id,
+                url: "{{ route('admin.product.destroy', '') }}/" + id,
                 success: function(response) {
                     console.log(response);
                     if(response.success){

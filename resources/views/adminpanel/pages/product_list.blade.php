@@ -70,7 +70,6 @@
                 <th>Sale Price</th>
                 <th>Qty</th>
                 <th>Brand</th>
-                <th>Type</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -89,7 +88,6 @@
                     <td class="center">{{$product->sale_price}}</td>
                     <td class="center">{{$product->available_qty}}</td>
                     <td class="center">{{$product->brand}}</td>
-                    <td class="center">{{$product->type}}</td>
 
                     <td>
                         <a href="{{ route('admin.product.edit', $product->id) }}">
@@ -118,7 +116,6 @@
                 <th>Sale Price</th>
                 <th>Qty</th>
                 <th>Brand</th>
-                <th>Type</th>
                 <th>Action</th>
             </tr>
             </tfoot>

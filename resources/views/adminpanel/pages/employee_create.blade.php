@@ -11,13 +11,13 @@
 @section('content')
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-10">
-            <h2>Create News</h2>
+            <h2>Create Employee</h2>
             <ol class="breadcrumb">
                 <li>
                     <a href="index.html">Home</a>
                 </li>
                 <li>
-                    <a>News</a>
+                    <a>Employee</a>
                 </li>
                 <li class="active">
                     <strong>Create</strong>
@@ -33,52 +33,58 @@
         <div class="row">
 
             <div class="ibox-content">
-                <form method="post" class="form-horizontal" action="{{ route('admin.expense.store') }}"
+                <form method="post" class="form-horizontal" action="{{ route('admin.employee.store') }}"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
 
-                        <label class="col-sm-2 control-label">Amount</label>
+
+
+                        <label class="col-sm-2 control-label">Name</label>
+
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="name"  required>
+                        </div>
+                        <label class="col-sm-2 control-label">Image</label>
+
+                        <div class="col-sm-4">
+                            <input type="file" class="form-control" name="profile_image" multiple="multiple">
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-sm-2 control-label">Salary</label>
 
                         <div class="col-sm-4">
                             <div class="input-group">
                                 <span class="input-group-addon">Rs</span>
-                                <input type="number" class="form-control" name="amount" required>
+                                <input type="number" class="form-control" name="salary" required>
                             </div>
                         </div>
 
-                        <label class="col-sm-2 control-label">Date</label>
+                        <label class="col-sm-2 control-label">CNIC #</label>
 
                         <div class="col-sm-4">
-                            <input type="date" class="form-control" name="date" value="<?php echo date('Y-m-d'); ?>" required>
+                            <input type="text" class="form-control" name="cnic"  placeholder="Optional">
                         </div>
 
 
                     </div>
 
-                    <div class="form-group">
-
-
-                        <label class="col-sm-2 control-label">Image</label>
-
-                        <div class="col-sm-4">
-                            <input type="file" class="form-control" name="images[]" multiple="multiple">
-                        </div>
-                    </div>
-
 
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Category</label>
+                        <label class="col-sm-2 control-label">Role</label>
 
                         <div class="col-sm-4">
-                            <select class="form-control" name="expense_category_id" required>
+                            <select class="form-control" name="role" required>
                                 <option selected disabled>Select</option>
-                                @foreach ($categories as $category)
-
-                                    <option value="{{ $category->id }}">{{ $category->name }} </option>
-                                @endforeach
-
+                                <option value="Manager">Manager</option>
+                                <option value="Worker">Worker</option>
+                                <option value="Cleaner">Cleaner</option>
+                                <option value="Accountant">Accountant</option>
                             </select>
                         </div>
 
@@ -86,28 +92,17 @@
 
                     </div>
 
+
+
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Account</label>
-
+                        <label class="col-sm-2 control-label">Email</label>
                         <div class="col-sm-4">
-                            <select class="form-control" name="account_id" required>
-                                <option selected disabled>Select</option>
-                                @foreach ($accounts as $account)
-
-                                    <option value="{{ $account->id }}">{{ $account->name }} </option>
-                                @endforeach
-
-                            </select>
+                            <input type="email" class="form-control" name="email" placeholder="Optional">
                         </div>
 
-
-
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Note</label>
+                        <label class="col-sm-2 control-label">Phone</label>
                         <div class="col-sm-4">
-                            <textarea name="note" id="" cols="50" rows="5"></textarea>
+                            <input type="text" class="form-control" name="phone" required>
                         </div>
 
                     </div>
@@ -137,34 +132,33 @@
         });
     </script>
 
+    <script>
+        var Success = `{{\Session::has('success')}}`;
+        var Error = `{{\Session::has('error')}}`;
 
-<script>
-    var Success = `{{\Session::has('success')}}`;
-    var Error = `{{\Session::has('error')}}`;
-
-    if (Success) {
-        setTimeout(function() {
-            toastr.options = {
-                closeButton: true,
-                progressBar: true,
-                showMethod: 'slideDown',
-                timeOut: 7000
-            };
-            toastr.success('Success Message', `{{\Session::get('success')}}`);
-
-        }, 1300);
-    }
-    else if(Error){
-        setTimeout(function() {
+        if (Success) {
+            setTimeout(function() {
                 toastr.options = {
                     closeButton: true,
                     progressBar: true,
                     showMethod: 'slideDown',
-                    timeOut: 4000
+                    timeOut: 7000
                 };
-                toastr.error('Failure Message', `{{\Session::get('error')}}`);
+                toastr.success('Success Message', `{{\Session::get('success')}}`);
 
             }, 1300);
-    }
-</script>
+        }
+        else if(Error){
+            setTimeout(function() {
+                    toastr.options = {
+                        closeButton: true,
+                        progressBar: true,
+                        showMethod: 'slideDown',
+                        timeOut: 4000
+                    };
+                    toastr.error('Failure Message', `{{\Session::get('error')}}`);
+
+                }, 1300);
+        }
+    </script>
 @endsection

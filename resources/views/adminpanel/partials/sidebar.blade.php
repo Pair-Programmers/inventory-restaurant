@@ -4,7 +4,8 @@
             <li class="nav-header">
                 <div class="dropdown profile-element"> <span>
                         <img alt="image" class="img-circle"
-                            src="{{ asset('storage') }}/images/users/{{ Auth::guard('admin')->user()->profile_image }}"
+                            {{-- src="{{ asset('storage') }}/images/users/{{ Auth::guard('admin')->user()->profile_image }}" --}}
+                            src="{{ asset('adminpanel') }}/img/logo.jpg"
                             style="width: 70px; height: 70px" />
                     </span>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -40,8 +41,9 @@
 
 
             <li>
-                <a href="{{ route('admin.expense.index') }}"><i class="fa fa-envelope"></i> <span class="nav-label">Expense</span><span
-                        class="fa arrow"></span></a>
+                <a href="{{ route('admin.expense.index') }}">
+                    <i class="fa fa-area-chart"></i> <span class="nav-label">Expenses</span><span class="fa arrow"></span>
+                </a>
                 <ul class="nav nav-second-level collapse">
                     <li><a href="{{ route('admin.expense.create') }}">Create</a></li>
                     <li><a href="{{ route('admin.expense.index') }}">List / Report</a></li>
@@ -50,8 +52,9 @@
             </li>
 
             <li>
-                <a href="{{ route('admin.product.index') }}"><i class="fa fa-envelope"></i> <span class="nav-label">Product</span><span
-                    class="fa arrow"></span></a>
+                <a href="{{ route('admin.product.index') }}">
+                    <i class="fa fa-cube"></i> <span class="nav-label">Products</span><span class="fa arrow"></span>
+                </a>
                 <ul class="nav nav-second-level collapse">
                     <li><a href="{{ route('admin.product.create') }}">Create</a></li>
                     <li><a href="{{ route('admin.product.index') }}">List / Report</a></li>
@@ -60,19 +63,51 @@
             </li>
 
             <li>
-                <a href="{{ route('admin.sale_invoice.index') }}"><i class="fa fa-envelope"></i> <span class="nav-label">Sale Invoice</span><span
-                    class="fa arrow"></span></a>
+                <a href="{{ route('admin.sale_invoice.index') }}">
+                    <i class="fa fa-arrow-circle-up"></i> <span class="nav-label">Sale Invoice</span><span class="fa arrow"></span>
+                </a>
                 <ul class="nav nav-second-level collapse">
                     <li><a href="{{ route('admin.sale_invoice.create') }}">Create</a></li>
                     <li><a href="{{ route('admin.sale_invoice.index') }}">List / Report</a></li>
                 </ul>
             </li>
 
+            <li>
+                <a href="{{ route('admin.purchase_invoice.index') }}">
+                    <i class="fa fa-arrow-circle-down"></i> <span class="nav-label">Purchase Invoice</span><span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level collapse">
+                    <li><a href="{{ route('admin.purchase_invoice.create') }}">Create</a></li>
+                    <li><a href="{{ route('admin.purchase_invoice.index') }}">List / Report</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="{{ route('admin.employee.index') }}">
+                    <i class="fa fa-group"></i> <span class="nav-label">Employees</span><span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level collapse">
+                    <li><a href="{{ route('admin.employee.create') }}">Create</a></li>
+                    <li><a href="{{ route('admin.employee.index') }}">List / Report</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="{{ route('admin.payment.index') }}">
+                    <i class="fa fa-money"></i> <span class="nav-label">Payments</span><span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level collapse">
+                    <li><a href="{{ route('admin.payment.create') }}">Make Payment</a></li>
+                    <li><a href="{{ route('admin.payment.index') }}">List / Report</a></li>
+                </ul>
+            </li>
+
 
 
             <li>
-                <a href="{{ route('admin.login') }}"><i class="fa fa-bar-chart-o"></i> <span
-                        class="nav-label">Contact Us</span><span class="fa arrow"></span></a>
+                <a href="{{ route('admin.login') }}">
+                    <i class="fa fa-file-text"></i> <span class="nav-label">Reposrts</span><span class="fa arrow"></span>
+                </a>
                 <ul class="nav nav-second-level collapse">
                     <li><a href="{{ route('admin.login') }}">Registered List</a></li>
                     <li><a href="{{ route('admin.login') }}">Download CV</a></li>
@@ -81,48 +116,7 @@
                 </ul>
             </li>
 
-            <li>
-                <a href="{{ route('admin.login') }}"><i class="fa fa-bar-chart-o"></i> <span
-                        class="nav-label">Users</span><span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level collapse">
-                    <li><a href="{{ route('admin.login') }}">Registered List</a></li>
-                    <li><a href="{{ route('admin.login') }}">Download CV</a></li>
-                    <li><a href="{{ route('admin.login') }}">Uploaded List</a></li>
-                    <li><a href="{{ route('admin.login') }}">Import Excel</a></li>
-                </ul>
-            </li>
 
-            <li>
-                <a href="{{ route('admin.login') }}"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">News
-                        Management</span><span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level collapse">
-                    <li><a href="{{ route('admin.login') }}">Registered List</a></li>
-                    <li><a href="{{ route('admin.login') }}">Download CV</a></li>
-                    <li><a href="{{ route('admin.login') }}">Uploaded List</a></li>
-                    <li><a href="{{ route('admin.login') }}">Import Excel</a></li>
-                </ul>
-            </li>
-            <!-- =====FAQS===== -->
-            <li>
-                <a href="{{ route('admin.login') }}"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">FAQ's</span><span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level collapse">
-                    <li><a href="{{ route('admin.login') }}">Registered List</a></li>
-                    <li><a href="{{ route('admin.login') }}">Download CV</a></li>
-                    <li><a href="{{ route('admin.login') }}">Uploaded List</a></li>
-                    <li><a href="{{ route('admin.login') }}">Import Excel</a></li>
-                </ul>
-            </li>
-
-            <li>
-                <a href="{{ route('admin.login') }}"><i class="fa fa-bar-chart-o"></i> <span
-                        class="nav-label">Admins</span><span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level collapse">
-                    <li><a href="{{ route('admin.login') }}">Registered List</a></li>
-                    <li><a href="{{ route('admin.login') }}">Download CV</a></li>
-                    <li><a href="{{ route('admin.login') }}">Uploaded List</a></li>
-                    <li><a href="{{ route('admin.login') }}">Import Excel</a></li>
-                </ul>
-            </li>
 
 
         </ul>

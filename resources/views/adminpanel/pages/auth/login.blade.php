@@ -19,7 +19,7 @@
 
 <body class="gray-bg">
     <div style="text-align: center">
-        <h1 class="logo-name" >Inventory</h1>
+        <h1 class="logo-name" >Al Rafay</h1>
     </div>
     <div class="middle-box text-center loginscreen animated fadeInDown">
         <div>
@@ -29,8 +29,8 @@
                 @endforeach
             @endif
 
-            <h3>Welcome to Inventory</h3>
-            <p>Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app views.
+            <h3>Welcome to Al Rafay restaurant Management</h3>
+            {{-- <p>Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app views. --}}
                 <!--Continually expanded and constantly improved Inspinia Admin Them (IN+)-->
             </p>
             <p>Login in. To see it in action.</p>
@@ -44,10 +44,10 @@
                 </div>
                 <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
 
-                <a href="{{route('admin.logout')}}" onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();"><small>Forgot password?</small></a>
+                {{-- <a href="{{route('admin.logout')}}" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();"><small>Forgot password?</small></a> --}}
             </form>
-            <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
+            <p class="m-t"> <small>This is developed by Pair Programmers in &copy; 2021</small> </p>
             <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">
                 @csrf
             </form>

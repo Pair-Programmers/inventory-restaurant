@@ -15,7 +15,6 @@ class Product extends Model
         'sale_price',
         'opening_qty',
         'available_qty',
-        'type',
         'unit',
         'images',
         'colors',

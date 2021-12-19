@@ -19,7 +19,7 @@ class CreateProductSubCategoriesTable extends Migration
 
             $table->bigInteger('product_category_id')->unsigned();
             $table->foreign('product_category_id')->references('id')->on('product_categories');
-            $table->bigInteger('created_by')->unsigned()->comment('This is admin, and value is comming from admins table');
+            $table->bigInteger('created_by')->unsigned();
             $table->foreign('created_by')->references('id')->on('admins');
 
             $table->timestamps();

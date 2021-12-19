@@ -16,18 +16,21 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id()->unsigned();
             $table->integer('amount');
-            $table->date('date');
+            $table->date('payment_date');
             $table->string('group');
             $table->string('type')->nullable();
             $table->longText('note')->nullable();
+
             //foreign keys
-            $table->bigInteger('customer_id')->unsigned()->nullable();
-            $table->foreign('customer_id')->references('id')->on('customers');
-            $table->bigInteger('vendor_id')->unsigned()->nullable();
-            $table->foreign('vendor_id')->references('id')->on('vendors');
+            $table->bigInteger('invoice_id')->unsigned()->nullable();
+            $table->foreign('invoice_id')->references('id')->on('invoices');
+            $table->bigInteger('expense_id')->unsigned()->nullable();
+            $table->foreign('expense_id')->references('id')->on('expenses');
+            $table->bigInteger('employee_id')->unsigned()->nullable();
+            //$table->foreign('employee_id')->references('id')->on('employees');
             $table->bigInteger('account_id')->unsigned();
             $table->foreign('account_id')->references('id')->on('accounts');
-            $table->bigInteger('created_by')->unsigned()->comment('This is admin, and value is comming from admins table');
+            $table->bigInteger('created_by')->unsigned();
             $table->foreign('created_by')->references('id')->on('admins');
 
             $table->timestamps();
