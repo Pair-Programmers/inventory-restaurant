@@ -86,6 +86,30 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     });
 
+    //Customer
+    Route::prefix('customer')->name('customer.')->group(function(){
+        Route::get('/index', [App\Http\Controllers\Adminpanel\CustomerController::class, 'index'])->name('index');
+        Route::get('/create', [App\Http\Controllers\Adminpanel\CustomerController::class, 'create'])->name('create');
+        Route::post('/store', [App\Http\Controllers\Adminpanel\CustomerController::class, 'store'])->name('store');
+        Route::get('/show/{id}', [App\Http\Controllers\Adminpanel\CustomerController::class, 'show'])->name('show');
+        Route::get('/edit/{id}', [App\Http\Controllers\Adminpanel\CustomerController::class, 'edit'])->name('edit');
+        Route::post('/update/{id}', [App\Http\Controllers\Adminpanel\CustomerController::class, 'update'])->name('update');
+        Route::get('/destroy/{id}', [App\Http\Controllers\Adminpanel\CustomerController::class, 'destroy'])->name('destroy');
+
+    });
+
+    //Vendor
+    Route::prefix('vendor')->name('vendor.')->group(function(){
+        Route::get('/index', [App\Http\Controllers\Adminpanel\VendorController::class, 'index'])->name('index');
+        Route::get('/create', [App\Http\Controllers\Adminpanel\VendorController::class, 'create'])->name('create');
+        Route::post('/store', [App\Http\Controllers\Adminpanel\VendorController::class, 'store'])->name('store');
+        Route::get('/show/{id}', [App\Http\Controllers\Adminpanel\VendorController::class, 'show'])->name('show');
+        Route::get('/edit/{id}', [App\Http\Controllers\Adminpanel\VendorController::class, 'edit'])->name('edit');
+        Route::post('/update/{id}', [App\Http\Controllers\Adminpanel\VendorController::class, 'update'])->name('update');
+        Route::get('/destroy/{id}', [App\Http\Controllers\Adminpanel\VendorController::class, 'destroy'])->name('destroy');
+
+    });
+
     //Payment
     Route::prefix('payment')->name('payment.')->group(function(){
         Route::get('/index', [App\Http\Controllers\Adminpanel\PaymentController::class, 'index'])->name('index');

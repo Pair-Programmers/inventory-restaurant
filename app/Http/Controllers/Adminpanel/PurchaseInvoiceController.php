@@ -23,7 +23,7 @@ class PurchaseInvoiceController extends Controller
     public function index()
     {
         //$products = Product::with('category', 'creator')->orderby('id', 'desc')->get();
-        $invoices = Invoice::where('type', 'Purchase Invoice')->orderby('id', 'desc')->get();
+        $invoices = Invoice::where('type', 'Purchase')->orderby('id', 'desc')->get();
         return view('adminpanel.pages.purchase_invoice_list', compact('invoices'));
     }
 
@@ -53,6 +53,7 @@ class PurchaseInvoiceController extends Controller
             'vendor_id'=> 'required',
             'product_id'=> 'required',
         ]);
+        $vendor = Vendor::find($request->vendor_id);
 
         $inputs = $request->all();
         $no_of_items = 0;
@@ -61,7 +62,13 @@ class PurchaseInvoiceController extends Controller
         }
         $inputs['no_of_items'] = $no_of_items;
         $inputs['no_of_products'] = sizeof($inputs['product_id']);
-        $inputs['type'] = 'Purchase Invoice';
+        $inputs['type'] = 'Purchase';
+        if($vendor->type == 'Cash'){
+            $inputs['group'] = 'Cash';
+        }
+        else{
+            $inputs['group'] = 'Credit';
+        }
         $inputs['created_by'] = Auth::id();
         $inputs['amount'] = intval($inputs['amount']);
         $product_ids = $inputs['product_id'];
@@ -80,8 +87,14 @@ class PurchaseInvoiceController extends Controller
                              'invoice_id'=>$invoice->id]);
         }
 
-        Payment::create(['amount'=>intval($inputs['amount']), 'payment_date'=>date('Y-m-d'), 'group'=>'Out', 'note'=>'Created Auto By System',
-        'type'=>'Purchase', 'invoice_id'=>$invoice->id, 'account_id'=>$request->account_id,  'created_by'=>Auth::id()]);
+        if($vendor->type == 'Cash'){
+            $account = Account::find($request->account_id);
+            Payment::create(['amount'=>intval($inputs['amount']), 'payment_date'=>date('Y-m-d'), 'group'=>'Out', 'note'=>'Created Auto By System',
+             'type'=>'Purchase', 'invoice_id'=>$invoice->id, 'account_id'=>$account->id,  'created_by'=>Auth::id()]);
+            $current_balance = $account->balance;
+            $account->balance = $current_balance - $inputs['amount'];
+            $account->save;
+        }
 
         if($request->button == 'Save & Print'){
             return redirect()->back()->with('success', 'Created & Sent For Print Successfuly !');

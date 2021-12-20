@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Adminpanel;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
 {
@@ -14,7 +16,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $customers = Customer::orderby('id', 'desc')->get();
+        return view('adminpanel.pages.customer_list', compact('customers'));
     }
 
     /**
@@ -24,7 +27,8 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('adminpanel.pages.customer_create');
+
     }
 
     /**
@@ -35,7 +39,19 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $inputs = $request->all();
+
+        if($request->hasfile('profile_image'))
+        {
+            $imageName = time().'.'.$request->profile_image->getClientOriginalName();
+            $request->profile_image->move(public_path('storage/images/customers'), $imageName);
+            $inputs['profile_image'] = $imageName;
+        }
+
+        $inputs['balance'] = $request->opening_balance;
+        $inputs['created_by'] = Auth::id();
+        Customer::create($inputs);
+        return redirect()->back()->with('success', 'Created Successfuly !');
     }
 
     /**
@@ -57,7 +73,8 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $customer = Customer::find($id);
+        return view('adminpanel.pages.customer_edit', compact('customer'));
     }
 
     /**
@@ -69,7 +86,20 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $customer = Customer::find($id);
+        $inputs = $request->all();
+        if($request->hasfile('profile_image'))
+        {
+            $imageName = time().'.'.$request->profile_image->getClientOriginalName();
+            $request->profile_image->move(public_path('storage/images/customers'), $imageName);
+            $inputs['profile_image'] = $imageName;
+        }
+        $inputs['created_by'] = Auth::id();
+        if($customer){
+            $customer->update($inputs);
+            return redirect()->back()->with('success', 'Created Successfuly !');
+        }
+        return redirect()->back()->with('error', 'Error while creating !');
     }
 
     /**
@@ -80,6 +110,11 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $customer = Customer::find($id);
+        if($customer){
+            $customer->delete();
+            return response()->json(['success'=>'customer deleted successfully !']);
+        }
+        return response()->json(['error'=>'customer not found !']);
     }
 }

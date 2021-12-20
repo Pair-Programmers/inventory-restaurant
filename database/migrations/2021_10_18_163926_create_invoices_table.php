@@ -23,6 +23,7 @@ class CreateInvoicesTable extends Migration
             $table->integer('reference_no')->nullable();
             $table->longText('description')->nullable();
             $table->string('type');
+            $table->string('group');
             $table->integer('cash_recieved')->default(0);
 
             $table->bigInteger('customer_id')->unsigned()->nullable();

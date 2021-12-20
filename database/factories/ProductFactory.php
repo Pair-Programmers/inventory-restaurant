@@ -30,7 +30,6 @@ class ProductFactory extends Factory
             'sale_price' => $this->faker->numberBetween($min = 10, $max = 5000),
             'opening_qty' => $this->faker->numberBetween($min = 10, $max = 50),
             'available_qty' => $this->faker->numberBetween($min = 10, $max = 50),
-            'type' => $this->faker->randomElement(['Active', 'Inactive']),
             'unit' => $this->faker->randomElement(['per KG', 'ml', 'per piece']),
             //'images' => `"[".$this->faker->image('public/storage/images/admins',200,200, null, false)."\","."[\"".$this->faker->image('public/storage/images/admins',200,200, null, false)."\",",
             'images' => "\"[\"abc.png\",\"abc2.png\"]\"",

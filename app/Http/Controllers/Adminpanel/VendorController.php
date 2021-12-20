@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Adminpanel;
 
 use App\Http\Controllers\Controller;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VendorController extends Controller
 {
@@ -14,7 +16,8 @@ class VendorController extends Controller
      */
     public function index()
     {
-        //
+        $vendors = Vendor::orderby('id', 'desc')->get();
+        return view('adminpanel.pages.vendor_list', compact('vendors'));
     }
 
     /**
@@ -24,7 +27,8 @@ class VendorController extends Controller
      */
     public function create()
     {
-        //
+        return view('adminpanel.pages.vendor_create');
+
     }
 
     /**
@@ -35,7 +39,19 @@ class VendorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $inputs = $request->all();
+
+        if($request->hasfile('profile_image'))
+        {
+            $imageName = time().'.'.$request->profile_image->getClientOriginalName();
+            $request->profile_image->move(public_path('storage/images/vendors'), $imageName);
+            $inputs['profile_image'] = $imageName;
+        }
+
+        $inputs['balance'] = $request->opening_balance;
+        $inputs['created_by'] = Auth::id();
+        Vendor::create($inputs);
+        return redirect()->back()->with('success', 'Created Successfuly !');
     }
 
     /**
@@ -57,7 +73,8 @@ class VendorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $vendor = Vendor::find($id);
+        return view('adminpanel.pages.vendor_edit', compact('vendor'));
     }
 
     /**
@@ -69,7 +86,20 @@ class VendorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $vendor = Vendor::find($id);
+        $inputs = $request->all();
+        if($request->hasfile('profile_image'))
+        {
+            $imageName = time().'.'.$request->profile_image->getClientOriginalName();
+            $request->profile_image->move(public_path('storage/images/vendors'), $imageName);
+            $inputs['profile_image'] = $imageName;
+        }
+        $inputs['created_by'] = Auth::id();
+        if($vendor){
+            $vendor->update($inputs);
+            return redirect()->back()->with('success', 'Created Successfuly !');
+        }
+        return redirect()->back()->with('error', 'Error while creating !');
     }
 
     /**
@@ -80,6 +110,11 @@ class VendorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $vendor = Vendor::find($id);
+        if($vendor){
+            $vendor->delete();
+            return response()->json(['success'=>'vendor deleted successfully !']);
+        }
+        return response()->json(['error'=>'vendor not found !']);
     }
 }

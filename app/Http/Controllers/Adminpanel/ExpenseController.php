@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Account;
 use App\Models\Expense;
 use App\Models\ExpenseCategory;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -56,7 +57,13 @@ class ExpenseController extends Controller
         }
         $inputs['images'] = json_encode($data);
         $inputs['created_by'] = Auth::id();
-        Expense::create($inputs);
+        $expense = Expense::create($inputs);
+        $account = Account::find($request->account_id);
+        Payment::create(['amount'=>intval($inputs['amount']), 'payment_date'=>date('Y-m-d'), 'group'=>'Out', 'note'=>'Created Auto By System',
+        'type'=>'Expense', 'expense_id'=>$expense->id, 'account_id'=>$account->id,  'created_by'=>Auth::id()]);
+        $current_balance = $account->balance;
+        $account->balance = $current_balance - $inputs['amount'];
+        $account->save;
         return redirect()->back()->with('success', 'Created Successfuly !');
     }
 

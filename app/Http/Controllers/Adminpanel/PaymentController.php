@@ -47,7 +47,12 @@ class PaymentController extends Controller
 
 
         $inputs['created_by'] = Auth::id();
+
         Payment::create($inputs);
+        $account = Account::find($request->account_id);
+        $current_balance = $account->balance;
+        $account->balance = $current_balance - $inputs['amount'];
+        $account->save;
         return redirect()->back()->with('success', 'Created Successfuly !');
     }
 

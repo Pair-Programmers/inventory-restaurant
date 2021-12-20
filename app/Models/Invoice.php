@@ -18,6 +18,7 @@ class Invoice extends Model
         'reference_no',
         'description',
         'type',
+        'group',
         'cash_recieved',
         'customer_id',
         'vendor_id',

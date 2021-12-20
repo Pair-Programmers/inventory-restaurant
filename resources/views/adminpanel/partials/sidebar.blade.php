@@ -83,6 +83,26 @@
             </li>
 
             <li>
+                <a href="{{ route('admin.customer.index') }}">
+                    <i class="fa fa-user"></i> <span class="nav-label">Customers</span><span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level collapse">
+                    <li><a href="{{ route('admin.customer.create') }}">Create</a></li>
+                    <li><a href="{{ route('admin.customer.index') }}">List / Report</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="{{ route('admin.vendor.index') }}">
+                    <i class="fa fa-user"></i> <span class="nav-label">Vendors</span><span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level collapse">
+                    <li><a href="{{ route('admin.vendor.create') }}">Create</a></li>
+                    <li><a href="{{ route('admin.vendor.index') }}">List / Report</a></li>
+                </ul>
+            </li>
+
+            <li>
                 <a href="{{ route('admin.employee.index') }}">
                     <i class="fa fa-group"></i> <span class="nav-label">Employees</span><span class="fa arrow"></span>
                 </a>
