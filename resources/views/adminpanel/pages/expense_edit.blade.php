@@ -11,13 +11,13 @@
 @section('content')
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-10">
-            <h2>Create News</h2>
+            <h2>Create Expense</h2>
             <ol class="breadcrumb">
                 <li>
                     <a href="index.html">Home</a>
                 </li>
                 <li>
-                    <a>News</a>
+                    <a>Expense</a>
                 </li>
                 <li class="active">
                     <strong>Create</strong>
@@ -50,7 +50,7 @@
                         <label class="col-sm-2 control-label">Date</label>
 
                         <div class="col-sm-4">
-                            <input type="date" class="form-control" name="date" value="{{$expense->date}}" required>
+                            <input type="date" class="form-control" name="expense_date" value="{{$expense->expense_date}}" required>
                         </div>
 
 

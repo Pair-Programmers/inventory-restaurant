@@ -54,7 +54,7 @@ class PaymentController extends Controller
         $account = Account::find($request->account_id);
         $current_balance = $account->balance;
         $account->balance = $current_balance - $inputs['amount'];
-        $account->save;
+        $account->save();
         return redirect()->back()->with('success', 'Created Successfuly !');
     }
 

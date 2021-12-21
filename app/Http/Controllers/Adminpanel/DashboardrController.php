@@ -28,8 +28,8 @@ class DashboardrController extends Controller
 
         $account1 = Account::find(1);
         $account2 = Account::find(2);
-        $totalSale = Invoice::where('type', 'Sale Invoice')->sum('amount');
-        $totalPurchase = Invoice::where('type', 'Purchase Invoice')->sum('amount');
+        $totalSale = Invoice::where('type', 'Sale')->sum('amount');
+        $totalPurchase = Invoice::where('type', 'Purchase')->sum('amount');
         $totalProducts = Product::count('id');
         $totalExpense = Expense::sum('amount');
         $paymentIn = Payment::where('group', 'In')->sum('amount');

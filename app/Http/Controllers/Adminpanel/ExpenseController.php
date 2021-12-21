@@ -62,8 +62,8 @@ class ExpenseController extends Controller
         Payment::create(['amount'=>intval($inputs['amount']), 'payment_date'=>date('Y-m-d'), 'group'=>'Out', 'note'=>'Created Auto By System',
         'type'=>'Expense', 'expense_id'=>$expense->id, 'account_id'=>$account->id,  'created_by'=>Auth::guard('admin')->id()]);
         $current_balance = $account->balance;
-        $account->balance = $current_balance - $inputs['amount'];
-        $account->save;
+        $account->balance = $current_balance - intval($inputs['amount']);
+        $account->save();
         return redirect()->back()->with('success', 'Created Successfuly !');
     }
 

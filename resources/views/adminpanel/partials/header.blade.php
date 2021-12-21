@@ -67,7 +67,7 @@
         </li> --}}
         <li class="dropdown">
             <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
+                {{-- <i class="fa fa-bell"></i>  <span class="label label-primary">8</span> --}}
             </a>
             <ul class="dropdown-menu dropdown-alerts">
             {{-- @forelse($notifications as $notification)

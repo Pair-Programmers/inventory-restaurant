@@ -37,10 +37,10 @@
             <form class="m-t" method="POST" role="form" action="{{route('admin.login')}}">
                 @csrf
                 <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Email" name="email" required="" value="admin@gmail.com">
+                    <input type="email" class="form-control" placeholder="Email" name="email" required>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password" name="password" required="" value="admin123">
+                    <input type="password" class="form-control" placeholder="Password" name="password" required>
                 </div>
                 <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
 

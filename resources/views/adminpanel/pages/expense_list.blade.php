@@ -12,13 +12,13 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2 >List of Contact Us Messages</h2>
+        <h2 >List of Expenses</h2>
         <ol class="breadcrumb">
             <li>
                 <a href="index.html">Home</a>
             </li>
             <li>
-                <a>Contact Us Messages</a>
+                <a>Expenses</a>
             </li>
             <li class="active">
                 <strong> List</strong>
@@ -78,7 +78,7 @@
             @foreach($expenses as $expense)
                 <tr class="gradeX" id="row-{{$expense->id}}">
                     <td>{{$counter}}</td>
-                    <td class="center">{{date('d-m-Y', strtotime($expense->date))}}</td>
+                    <td class="center">{{date('d-m-Y', strtotime($expense->expense_date))}}</td>
                     <td class="center">{{$expense->amount}}</td>
                     <td class="center">{{$expense->account->name}}</td>
                     <td class="center">{{$expense->category->name}}</td>

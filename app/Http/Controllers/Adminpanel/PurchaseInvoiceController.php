@@ -95,7 +95,7 @@ class PurchaseInvoiceController extends Controller
              'type'=>'Purchase', 'invoice_id'=>$invoice->id, 'account_id'=>$account->id,  'created_by'=>Auth::guard('admin')->id()]);
             $current_balance = $account->balance;
             $account->balance = $current_balance - $inputs['amount'];
-            $account->save;
+            $account->save();
         }
 
         if($request->button == 'Save & Print'){
