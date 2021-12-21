@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Adminpanel;
 use App\Http\Controllers\Controller;
 use App\Models\Account;
 use App\Models\Employee;
+use App\Models\Expense;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -44,10 +45,11 @@ class PaymentController extends Controller
     public function store(Request $request)
     {
         $inputs = $request->all();
-
-
-        $inputs['created_by'] = Auth::id();
-
+        $inputs['created_by'] = Auth::guard('admin')->id();
+        $expense = Expense::create(['amount'=>$request->amount, 'expense_date'=>$request->payment_date, 'account_id'=>$request->account_id, 'expense_category_id'=>4, 'created_by'=>Auth::guard('admin')->id()]);
+        $inputs['type'] = 'Expense';
+        $inputs['group'] = 'Out';
+        $inputs['expense_id'] = $expense->id;
         Payment::create($inputs);
         $account = Account::find($request->account_id);
         $current_balance = $account->balance;
@@ -94,7 +96,7 @@ class PaymentController extends Controller
 
         $inputs = $request->all();
 
-        $inputs['created_by'] = Auth::id();
+        $inputs['created_by'] = Auth::guard('admin')->id();
         if($expense){
             $expense->update($inputs);
             return redirect()->back()->with('success', 'Created Successfuly !');

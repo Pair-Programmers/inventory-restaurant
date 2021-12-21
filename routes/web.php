@@ -24,9 +24,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //adminpanel routes//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Route::prefix('admin')->name('admin.')->group(function(){
-    Route::get('/login', [App\Http\Controllers\Adminpanel\Auth\LoginController::class, 'showLoginForm'])->name('login');
-	Route::post('/login', [App\Http\Controllers\Adminpanel\Auth\LoginController::class, 'login'])->name('login');
+Route::get('/admin/login', [App\Http\Controllers\Adminpanel\Auth\LoginController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/admin/login', [App\Http\Controllers\Adminpanel\Auth\LoginController::class, 'login'])->name('admin.login');
+Route::prefix('admin')->name('admin.')->middleware('authAdmin')->group(function(){
     Route::post('/logout', [App\Http\Controllers\Adminpanel\Auth\LoginController::class, 'logout'])->name('logout');
     Route::get('/', [App\Http\Controllers\Adminpanel\DashboardrController ::class, 'index'])->name('home');
 

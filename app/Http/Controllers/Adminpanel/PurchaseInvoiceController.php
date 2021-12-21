@@ -69,7 +69,7 @@ class PurchaseInvoiceController extends Controller
         else{
             $inputs['group'] = 'Credit';
         }
-        $inputs['created_by'] = Auth::id();
+        $inputs['created_by'] = Auth::guard('admin')->id();
         $inputs['amount'] = intval($inputs['amount']);
         $product_ids = $inputs['product_id'];
         $product_qtys = $inputs['product_qty'];
@@ -85,12 +85,14 @@ class PurchaseInvoiceController extends Controller
                              'sale_price'=>$product->sale_price,
                              'total_ammount'=>$product->sale_price * $product_qtys[$i],
                              'invoice_id'=>$invoice->id]);
+            $product->available_qty = $product->available_qty + $product_qtys[$i];
+            $product->save();
         }
 
         if($vendor->type == 'Cash'){
             $account = Account::find($request->account_id);
             Payment::create(['amount'=>intval($inputs['amount']), 'payment_date'=>date('Y-m-d'), 'group'=>'Out', 'note'=>'Created Auto By System',
-             'type'=>'Purchase', 'invoice_id'=>$invoice->id, 'account_id'=>$account->id,  'created_by'=>Auth::id()]);
+             'type'=>'Purchase', 'invoice_id'=>$invoice->id, 'account_id'=>$account->id,  'created_by'=>Auth::guard('admin')->id()]);
             $current_balance = $account->balance;
             $account->balance = $current_balance - $inputs['amount'];
             $account->save;
@@ -148,7 +150,7 @@ class PurchaseInvoiceController extends Controller
             }
         }
         $inputs['images'] = json_encode($data);
-        $inputs['created_by'] = Auth::id();
+        $inputs['created_by'] = Auth::guard('admin')->id();
         $inputs['available_qty'] = $inputs['opening_qty'];
         if($product){
             $product->update($inputs);

@@ -4,8 +4,8 @@
             <li class="nav-header">
                 <div class="dropdown profile-element"> <span>
                         <img alt="image" class="img-circle"
-                            {{-- src="{{ asset('storage') }}/images/users/{{ Auth::guard('admin')->user()->profile_image }}" --}}
-                            src="{{ asset('adminpanel') }}/img/logo.jpg"
+                            src="{{ asset('storage') }}/images/admins/{{ Auth::guard('admin')->user()->profile_image }}"
+                            {{-- src="{{ asset('adminpanel') }}/img/logo.jpg" --}}
                             style="width: 70px; height: 70px" />
                     </span>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -39,18 +39,6 @@
             </li>
 
 
-
-            <li>
-                <a href="{{ route('admin.expense.index') }}">
-                    <i class="fa fa-area-chart"></i> <span class="nav-label">Expenses</span><span class="fa arrow"></span>
-                </a>
-                <ul class="nav nav-second-level collapse">
-                    <li><a href="{{ route('admin.expense.create') }}">Create</a></li>
-                    <li><a href="{{ route('admin.expense.index') }}">List / Report</a></li>
-                    <li><a href="{{ route('admin.expense.category.index') }}">Manage Category</a></li>
-                </ul>
-            </li>
-
             <li>
                 <a href="{{ route('admin.product.index') }}">
                     <i class="fa fa-cube"></i> <span class="nav-label">Products</span><span class="fa arrow"></span>
@@ -73,16 +61,6 @@
             </li>
 
             <li>
-                <a href="{{ route('admin.purchase_invoice.index') }}">
-                    <i class="fa fa-arrow-circle-down"></i> <span class="nav-label">Purchase Invoice</span><span class="fa arrow"></span>
-                </a>
-                <ul class="nav nav-second-level collapse">
-                    <li><a href="{{ route('admin.purchase_invoice.create') }}">Create</a></li>
-                    <li><a href="{{ route('admin.purchase_invoice.index') }}">List / Report</a></li>
-                </ul>
-            </li>
-
-            <li>
                 <a href="{{ route('admin.customer.index') }}">
                     <i class="fa fa-user"></i> <span class="nav-label">Customers</span><span class="fa arrow"></span>
                 </a>
@@ -92,6 +70,23 @@
                 </ul>
             </li>
 
+
+
+
+
+
+            <li>
+                <a href="{{ route('admin.purchase_invoice.index') }}">
+                    <i class="fa fa-arrow-circle-down"></i> <span class="nav-label">Purchase Invoice</span><span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level collapse">
+                    <li><a href="{{ route('admin.purchase_invoice.create') }}">Create</a></li>
+                    <li><a href="{{ route('admin.purchase_invoice.index') }}">List / Report</a></li>
+                </ul>
+            </li>
+
+
+
             <li>
                 <a href="{{ route('admin.vendor.index') }}">
                     <i class="fa fa-user"></i> <span class="nav-label">Vendors</span><span class="fa arrow"></span>
@@ -99,16 +94,6 @@
                 <ul class="nav nav-second-level collapse">
                     <li><a href="{{ route('admin.vendor.create') }}">Create</a></li>
                     <li><a href="{{ route('admin.vendor.index') }}">List / Report</a></li>
-                </ul>
-            </li>
-
-            <li>
-                <a href="{{ route('admin.employee.index') }}">
-                    <i class="fa fa-group"></i> <span class="nav-label">Employees</span><span class="fa arrow"></span>
-                </a>
-                <ul class="nav nav-second-level collapse">
-                    <li><a href="{{ route('admin.employee.create') }}">Create</a></li>
-                    <li><a href="{{ route('admin.employee.index') }}">List / Report</a></li>
                 </ul>
             </li>
 
@@ -122,6 +107,29 @@
                 </ul>
             </li>
 
+            <li>
+                <a href="{{ route('admin.expense.index') }}">
+                    <i class="fa fa-area-chart"></i> <span class="nav-label">Expenses</span><span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level collapse">
+                    <li><a href="{{ route('admin.expense.create') }}">Create</a></li>
+                    <li><a href="{{ route('admin.expense.index') }}">List / Report</a></li>
+                    <li><a href="{{ route('admin.expense.category.index') }}">Manage Category</a></li>
+                </ul>
+            </li>
+
+
+            <li>
+                <a href="{{ route('admin.employee.index') }}">
+                    <i class="fa fa-group"></i> <span class="nav-label">Employees</span><span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level collapse">
+                    <li><a href="{{ route('admin.employee.create') }}">Create</a></li>
+                    <li><a href="{{ route('admin.employee.index') }}">List / Report</a></li>
+                </ul>
+            </li>
+
+
 
 
             <li>
@@ -129,10 +137,13 @@
                     <i class="fa fa-file-text"></i> <span class="nav-label">Reposrts</span><span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level collapse">
-                    <li><a href="{{ route('admin.login') }}">Registered List</a></li>
-                    <li><a href="{{ route('admin.login') }}">Download CV</a></li>
-                    <li><a href="{{ route('admin.login') }}">Uploaded List</a></li>
-                    <li><a href="{{ route('admin.login') }}">Import Excel</a></li>
+                    <li><a href="{{ route('admin.sale_invoice.index') }}">Sales List</a></li>
+                    <li><a href="{{ route('admin.purchase_invoice.index') }}">Purchase List</a></li>
+                    <li><a href="{{ route('admin.expense.category.index') }}">Expense List</a></li>
+                    <li><a href="{{ route('admin.product.index') }}">Products List</a></li>
+                    <li><a href="{{ route('admin.employee.index') }}">Employees List</a></li>
+                    <li><a href="{{ route('admin.customer.index') }}">Customers List</a></li>
+                    <li><a href="{{ route('admin.vendor.index') }}">Vendors List</a></li>
                 </ul>
             </li>
 

@@ -49,7 +49,7 @@ class CustomerController extends Controller
         }
 
         $inputs['balance'] = $request->opening_balance;
-        $inputs['created_by'] = Auth::id();
+        $inputs['created_by'] = Auth::guard('admin')->id();
         Customer::create($inputs);
         return redirect()->back()->with('success', 'Created Successfuly !');
     }
@@ -94,7 +94,7 @@ class CustomerController extends Controller
             $request->profile_image->move(public_path('storage/images/customers'), $imageName);
             $inputs['profile_image'] = $imageName;
         }
-        $inputs['created_by'] = Auth::id();
+        $inputs['created_by'] = Auth::guard('admin')->id();
         if($customer){
             $customer->update($inputs);
             return redirect()->back()->with('success', 'Created Successfuly !');

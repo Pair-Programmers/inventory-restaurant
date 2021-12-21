@@ -19,6 +19,13 @@ class DashboardrController extends Controller
      */
     public function index()
     {
+        $totalSale = 0;
+        $totalPurchase = 0;
+        $totalProducts = 0;
+        $totalExpense = 0;
+        $paymentIn = 0;
+        $paymentOut = 0;
+
         $account1 = Account::find(1);
         $account2 = Account::find(2);
         $totalSale = Invoice::where('type', 'Sale Invoice')->sum('amount');

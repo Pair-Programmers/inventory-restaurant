@@ -20,8 +20,11 @@
                     </div>
                     <div class="ibox-content">
                         <a href="{{route('admin.login')}}">
-
+                            @if ($account1)
                             <h1 class="no-margins">{{$account1->balance}}</h1>
+                            @else
+                            <h1 class="no-margins">0</h1>
+                            @endif
                             {{-- <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div> --}}
                             <small>Total cash available</small>
                         </a>
@@ -36,7 +39,11 @@
                     </div>
                     <div class="ibox-content">
                         <a href="{{route('admin.login')}}">
+                            @if ($account2)
                             <h1 class="no-margins">{{$account2->balance}}</h1>
+                            @else
+                            <h1 class="no-margins">0</h1>
+                            @endif
                             {{-- <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div> --}}
                             <small>Total cash available in Bank</small>
                         </a>

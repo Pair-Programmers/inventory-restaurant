@@ -12,13 +12,13 @@
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2 >List of Contact Us Messages</h2>
+        <h2 >List of Products</h2>
         <ol class="breadcrumb">
             <li>
                 <a href="index.html">Home</a>
             </li>
             <li>
-                <a>Contact Us Messages</a>
+                <a>Products</a>
             </li>
             <li class="active">
                 <strong> List</strong>

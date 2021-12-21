@@ -49,7 +49,7 @@ class EmployeeController extends Controller
         }
 
 
-        $inputs['created_by'] = Auth::id();
+        $inputs['created_by'] = Auth::guard('admin')->id();
         Employee::create($inputs);
         return redirect()->back()->with('success', 'Created Successfuly !');
     }
@@ -99,7 +99,7 @@ class EmployeeController extends Controller
             }
         }
         $inputs['images'] = json_encode($data);
-        $inputs['created_by'] = Auth::id();
+        $inputs['created_by'] = Auth::guard('admin')->id();
         if($expense){
             $expense->update($inputs);
             return redirect()->back()->with('success', 'Created Successfuly !');

@@ -63,7 +63,7 @@ class LoginController extends Controller
         // return  $request;
         if(Auth::guard('admin')->attempt(['email'=> $request->email, 'password' => $request->password] )){
             $admin = Admin::where('email', $request->email)->first();
-            Auth::login($admin);
+            Auth::guard('admin')->login($admin);
             return  redirect()->intended(route('admin.home'));
         }
         return redirect()->back()->withInput($request->only('email'));

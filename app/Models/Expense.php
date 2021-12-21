@@ -10,7 +10,7 @@ class Expense extends Model
     use HasFactory;
 
     protected $fillable = [
-        'date',
+        'expense_date',
         'amount',
         'note',
         'images',

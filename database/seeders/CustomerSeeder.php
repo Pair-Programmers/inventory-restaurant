@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Customer;
 use Illuminate\Database\Seeder;
 
 class CustomerSeeder extends Seeder
@@ -13,6 +14,9 @@ class CustomerSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Customer::factory(20)->create();
+        Customer::create(['name' => 'Cash Customer', 'type' => 'Cash', 'created_by' => 1]);
+        Customer::create(['name' => 'Geuests', 'type' => 'Credit', 'created_by' => 1]);
+        Customer::create(['name' => 'Our Employees', 'type' => 'Credit', 'created_by' => 1]);
+        //\App\Models\Customer::factory(20)->create();
     }
 }

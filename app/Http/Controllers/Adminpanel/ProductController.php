@@ -58,9 +58,9 @@ class ProductController extends Controller
             }
         }
         $inputs['images'] = json_encode($data);
-        $inputs['created_by'] = Auth::id();
+        $inputs['created_by'] = Auth::guard('admin')->id();
         $inputs['available_qty'] = $inputs['opening_qty'];
-        $inputs['product_subcategory_id'] = 1;//not in use
+        //$inputs['product_subcategory_id'] = 1;//not in use
 
         Product::create($inputs);
         return redirect()->back()->with('success', 'Created Successfuly !');
@@ -112,7 +112,7 @@ class ProductController extends Controller
             }
         }
         $inputs['images'] = json_encode($data);
-        $inputs['created_by'] = Auth::id();
+        $inputs['created_by'] = Auth::guard('admin')->id();
         $inputs['available_qty'] = $inputs['opening_qty'];
         if($product){
             $product->update($inputs);

@@ -79,7 +79,7 @@
                         <label class="col-sm-2 control-label">Opening Qty</label>
 
                         <div class="col-sm-4">
-                            <input type="number" min="0" class="form-control" name="opening_qty" required>
+                            <input type="number" min="0" class="form-control" name="opening_qty" value="0" required>
                         </div>
 
 
