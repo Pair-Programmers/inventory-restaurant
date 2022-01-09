@@ -91,7 +91,7 @@
 
                         <div class="col-sm-4">
                             <select class="form-control" name="account_id" required>
-                                <option selected disabled>Select</option>
+                                {{-- <option selected disabled>Select</option> --}}
                                 @foreach ($accounts as $account)
 
                                     <option value="{{ $account->id }}">{{ $account->name }} </option>

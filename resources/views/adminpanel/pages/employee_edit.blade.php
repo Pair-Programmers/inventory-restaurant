@@ -34,7 +34,7 @@
 
             <div class="ibox-content">
 
-                <form method="post" class="form-horizontal" {{ route('admin.employee.update', $employee->id) }}
+                <form method="post" class="form-horizontal" action='{{ route('admin.employee.update', $employee->id) }}'
                     enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
@@ -86,6 +86,8 @@
                                 <option value="Worker">Worker</option>
                                 <option value="Cleaner">Cleaner</option>
                                 <option value="Accountant">Accountant</option>
+                                <option value="Waiter">Waiter</option>
+
                             </select>
                         </div>
 

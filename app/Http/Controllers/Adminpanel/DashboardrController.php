@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Account;
 use App\Models\Expense;
 use App\Models\Invoice;
+use App\Models\InvoiceDetail;
 use App\Models\Payment;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -19,6 +20,8 @@ class DashboardrController extends Controller
      */
     public function index()
     {
+        //return InvoiceDetail::where('product_id', 29)->orWhere('product_id', 30)
+        //->orWhere('product_id', 32)->sum('sale_quantity');
         $totalSale = 0;
         $totalPurchase = 0;
         $totalProducts = 0;

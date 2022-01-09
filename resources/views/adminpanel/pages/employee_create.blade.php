@@ -85,6 +85,7 @@
                                 <option value="Worker">Worker</option>
                                 <option value="Cleaner">Cleaner</option>
                                 <option value="Accountant">Accountant</option>
+                                <option value="Waiter">Waiter</option>
                             </select>
                         </div>
 

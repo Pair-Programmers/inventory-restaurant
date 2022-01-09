@@ -25,7 +25,7 @@ class ExpenseFactory extends Factory
     public function definition()
     {
         return [
-            'date' => $this->faker->date($format = 'Y-m-d', $max = '2010-01-01'),
+            'expense_date' => $this->faker->date($format = 'Y-m-d', $max = '2010-01-01'),
             'amount' => $this->faker->numberBetween($min = 10, $max = 2000000),
             'note' => $this->faker->paragraph(),
             'account_id' => Account::pluck('id')->random(),

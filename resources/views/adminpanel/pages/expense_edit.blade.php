@@ -11,7 +11,7 @@
 @section('content')
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-10">
-            <h2>Create Expense</h2>
+            <h2>Edit Expense</h2>
             <ol class="breadcrumb">
                 <li>
                     <a href="index.html">Home</a>
@@ -20,7 +20,7 @@
                     <a>Expense</a>
                 </li>
                 <li class="active">
-                    <strong>Create</strong>
+                    <strong>Edit</strong>
                 </li>
             </ol>
         </div>
@@ -94,7 +94,7 @@
 
                         <div class="col-sm-4">
                             <select class="form-control" name="account_id" required>
-                                <option selected disabled>Select</option>
+                                {{-- <option selected disabled>Select</option> --}}
                                 @foreach ($accounts as $account)
                                     @if ($expense->account_id == $account->id)
                                     <option selected value="{{ $account->id }}">{{ $account->name }} </option>

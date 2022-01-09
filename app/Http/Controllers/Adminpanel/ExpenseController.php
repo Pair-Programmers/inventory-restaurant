@@ -102,6 +102,8 @@ class ExpenseController extends Controller
     public function update(Request $request, $id)
     {
         $expense = Expense::find($id);
+        $account = Account::find($expense->account_id);
+
         $data[] = null;
         $inputs = $request->all();
         if($request->hasfile('images'))
@@ -109,14 +111,20 @@ class ExpenseController extends Controller
             foreach($request->file('images') as $key => $image)
             {
                 $name=time().'_'. $key . '_'.$image->getClientOriginalName();
-                $image->move(public_path().'/storage/images/expense', $name);
+                $image->move(public_path().'/storage/images/expenses', $name);
                 $data[] = $name;
             }
         }
         $inputs['images'] = json_encode($data);
-        $inputs['created_by'] = Auth::guard('admin')->id();
         if($expense){
+            $current_balance = $account->balance;
+            $current_balance = $current_balance + $expense->amount - intval($inputs['amount']);
+            $account->balance = $current_balance;
+            $account->save();
             $expense->update($inputs);
+            $payment = Payment::where('expense_id', $expense->id)->first();
+            $payment->amount = intval($inputs['amount']);
+            $payment->save();
             return redirect()->back()->with('success', 'Created Successfuly !');
         }
         return redirect()->back()->with('error', 'Error while creating !');

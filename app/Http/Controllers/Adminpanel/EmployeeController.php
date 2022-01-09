@@ -86,22 +86,17 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $expense = Employee::find($id);
-        $data[] = null;
+        $employee = Employee::find($id);
         $inputs = $request->all();
-        if($request->hasfile('images'))
+        if($request->hasfile('profile_image'))
         {
-            foreach($request->file('images') as $key => $image)
-            {
-                $name=time().'_'. $key . '_'.$image->getClientOriginalName();
-                $image->move(public_path().'/storage/images/expense', $name);
-                $data[] = $name;
-            }
+            $imageName = time().'.'.$request->profile_image->getClientOriginalName();
+            $request->profile_image->move(public_path('storage/images/employees'), $imageName);
+            $inputs['profile_image'] = $imageName;
         }
-        $inputs['images'] = json_encode($data);
         $inputs['created_by'] = Auth::guard('admin')->id();
-        if($expense){
-            $expense->update($inputs);
+        if($employee){
+            $employee->update($inputs);
             return redirect()->back()->with('success', 'Created Successfuly !');
         }
         return redirect()->back()->with('error', 'Error while creating !');
