@@ -12,44 +12,8 @@
     <div class="wrapper wrapper-content">
         <div class="row">
 
-            <div class="col-lg-3">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        {{-- <span class="label label-success pull-right">Monthly</span> --}}
-                        <h5>Cash in Counter</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <a href="{{route('admin.login')}}">
-                            @if ($account1)
-                            <h1 class="no-margins">{{$account1->balance}}</h1>
-                            @else
-                            <h1 class="no-margins">0</h1>
-                            @endif
-                            {{-- <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div> --}}
-                            <small>Total cash available</small>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        {{-- <span class="label label-info pull-right">Annual</span> --}}
-                        <h5>Cash in Bank Account</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <a href="{{route('admin.login')}}">
-                            @if ($account2)
-                            <h1 class="no-margins">{{$account2->balance}}</h1>
-                            @else
-                            <h1 class="no-margins">0</h1>
-                            @endif
-                            {{-- <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div> --}}
-                            <small>Total cash available in Bank</small>
-                        </a>
-                    </div>
-                </div>
-            </div>
+
+
 
             <div class="col-lg-3">
                 <div class="ibox float-e-margins">
@@ -117,7 +81,7 @@
 
 
         </div>
-        <div class="row">
+        {{-- <div class="row">
             @if ($paymentIn > $paymentOut)
             <div class="col-lg-3">
                 <div class="ibox">
@@ -166,7 +130,7 @@
 
 
 
-        </div>
+        </div> --}}
     </div>
 @endsection
 <!-- ======================================== FOOTER PAGE SCRIPT ======================================= -->

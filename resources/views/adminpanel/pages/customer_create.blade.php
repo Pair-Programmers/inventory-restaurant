@@ -70,7 +70,7 @@
                             <select class="form-control" name="type" required>
                                 <option selected disabled>Select</option>
                                 <option value="Cash">Cash Based</option>
-                                <option value="Credit">Credit Sased</option>
+                                <option value="Credit">Credit Based</option>
                             </select>
                         </div>
 

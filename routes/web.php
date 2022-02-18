@@ -28,7 +28,9 @@ Route::get('/admin/login', [App\Http\Controllers\Adminpanel\Auth\LoginController
 Route::post('/admin/login', [App\Http\Controllers\Adminpanel\Auth\LoginController::class, 'login'])->name('admin.login');
 Route::prefix('admin')->name('admin.')->middleware('authAdmin')->group(function(){
     Route::post('/logout', [App\Http\Controllers\Adminpanel\Auth\LoginController::class, 'logout'])->name('logout');
-    Route::get('/', [App\Http\Controllers\Adminpanel\DashboardrController ::class, 'index'])->name('home');
+    Route::get('/', [App\Http\Controllers\Adminpanel\DashboardrController::class, 'index'])->name('home');
+    Route::get('/setting/{id}', [App\Http\Controllers\Adminpanel\AdminController::class, 'edit'])->name('setting');
+    Route::post('/setting/update/{id}', [App\Http\Controllers\Adminpanel\AdminController::class, 'update'])->name('setting.update');
 
     //Expense
     Route::prefix('expense')->name('expense.')->group(function(){

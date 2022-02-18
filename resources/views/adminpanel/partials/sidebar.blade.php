@@ -16,7 +16,7 @@
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
                         {{-- <li><a href="profile.html">Profile</a></li>
                                 <li><a href="contacts.html">Contacts</a></li> --}}
-                        <li><a href="{{route('admin.login')}}">Setting</a></li>
+                        <li><a href="{{route('admin.setting', ['id'=>1])}}">Setting</a></li>
                         <li class="divider"></li>
                         <li><a href="{{route('admin.logout')}}" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">Logout</a></li>
@@ -119,7 +119,7 @@
             </li>
 
 
-            <li>
+            {{-- <li>
                 <a href="{{ route('admin.employee.index') }}">
                     <i class="fa fa-group"></i> <span class="nav-label">Employees</span><span class="fa arrow"></span>
                 </a>
@@ -127,7 +127,7 @@
                     <li><a href="{{ route('admin.employee.create') }}">Create</a></li>
                     <li><a href="{{ route('admin.employee.index') }}">List / Report</a></li>
                 </ul>
-            </li>
+            </li> --}}
 
 
 
@@ -141,7 +141,7 @@
                     <li><a href="{{ route('admin.purchase_invoice.index') }}">Purchase List</a></li>
                     <li><a href="{{ route('admin.expense.category.index') }}">Expense List</a></li>
                     <li><a href="{{ route('admin.product.index') }}">Products List</a></li>
-                    <li><a href="{{ route('admin.employee.index') }}">Employees List</a></li>
+                    {{-- <li><a href="{{ route('admin.employee.index') }}">Employees List</a></li> --}}
                     <li><a href="{{ route('admin.customer.index') }}">Customers List</a></li>
                     <li><a href="{{ route('admin.vendor.index') }}">Vendors List</a></li>
                 </ul>
