@@ -17,11 +17,12 @@ class CreateInvoiceDetailsTable extends Migration
             $table->id()->unsigned();
             $table->integer('product_id');
             $table->integer('sale_quantity');
-            $table->integer('sale_price');
+            $table->integer('purchase_price')->nullable();
+            $table->integer('sale_price')->nullable();
             $table->integer('total_ammount');
 
             $table->bigInteger('invoice_id')->unsigned();
-            $table->foreign('invoice_id')->references('id')->on('invoices');
+            $table->foreign('invoice_id')->references('id')->on('invoices')->cascadeOnDelete();
             $table->timestamps();
         });
     }

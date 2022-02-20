@@ -1,7 +1,7 @@
 @extends('adminpanel.layout.master')
 <!-- ================================== EXTEND TITLE AND META TAGS ============================= -->
 @section('title-meta')
-<title>Bizblanca | Dashboard</title>
+<title>Inventory | Dashboard</title>
 <meta name="description" content="this is description">
 @endsection
 <!-- ====================================== EXTRA CSS LINKS ==================================== -->
@@ -212,7 +212,7 @@
                         swal("Coudnt Found!", "News not Found", "error");
                     }
                     else{
-                        swal("Error!", "Some Logical Error", "error");
+                        swal("Error!", "Not Authorize | Logical Error", "error");
                     }
                 },
                 error: function (response){

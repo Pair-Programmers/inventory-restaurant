@@ -8227,3 +8227,7 @@ body.md-skin {
     margin: 0;
   }
 }
+@page
+{
+    margin: 0;
+}

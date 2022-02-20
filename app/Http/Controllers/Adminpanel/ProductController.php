@@ -63,7 +63,7 @@ class ProductController extends Controller
         //$inputs['product_subcategory_id'] = 1;//not in use
 
         Product::create($inputs);
-        return redirect()->back()->with('success', 'Created Successfuly !');
+        return redirect()->route('admin.product.index')->with('success', 'Created Successfuly !');
     }
 
     /**

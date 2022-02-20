@@ -39,4 +39,9 @@ class Invoice extends Model
     {
         return $this->hasOne(Vendor::class, 'id', 'vendor_id');
     }
+
+    public function detail()
+    {
+        return $this->hasMany(InvoiceDetail::class,  'invoice_id');
+    }
 }

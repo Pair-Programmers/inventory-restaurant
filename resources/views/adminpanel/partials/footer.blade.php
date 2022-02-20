@@ -1,8 +1,8 @@
 <div class="footer">
     <div class="pull-right">
-        www.pairprogrammers.pk
+        support@pairprogrammers.pk
     </div>
     <div>
-        <strong>Copyright</strong> Pair Programmers &copy; 2020
+        <strong>Copyright</strong> Pair Programmers &copy; 2021
     </div>
 </div>

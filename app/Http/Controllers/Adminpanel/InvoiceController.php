@@ -9,6 +9,7 @@ use App\Models\Invoice;
 use App\Models\InvoiceDetail;
 use App\Models\Payment;
 use App\Models\Product;
+use charlieuki\ReceiptPrinter\ReceiptPrinter as ReceiptPrinter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -53,6 +54,7 @@ class InvoiceController extends Controller
             'product_id'=> 'required',
         ]);
 
+        $items = [];
         $customer = Customer::find($request->customer_id);
 
         $inputs = $request->all();
@@ -87,7 +89,7 @@ class InvoiceController extends Controller
                              'invoice_id'=>$invoice->id]);
             $product->available_qty = $product->available_qty - $product_qtys[$i];
             $product->save();
-
+            array_push($items, ['name'=>$product->name, 'qty'=>$product_qtys[$i], 'price'=>$product->sale_price]);
         }
 
         if($customer->type == 'Cash'){
@@ -100,6 +102,58 @@ class InvoiceController extends Controller
         }
 
         if($request->button == 'Save & Print'){
+            if(env('PRINTER_TYPE') != 'Thermal'){
+                return redirect()->route('admin.sale_invoice.print', $invoice->id);
+            }
+            $mid = '';
+            $store_name = 'YOURMART';
+            $store_address = 'Mart Address';
+            $store_phone = '1234567890';
+            $store_email = 'yourmart@email.com';
+            $store_website = '';
+            $tax_percentage = $inputs['discount'];
+            $transaction_id = sprintf("%05d", $invoice->id);
+            $currency = 'Rs';
+            $image_path = '';
+
+            // Init printer
+            $printer = new ReceiptPrinter;
+            $printer->init(
+                config('receiptprinter.connector_type'),
+                config('receiptprinter.connector_descriptor')
+            );
+
+            // Set store info
+            $printer->setStore($mid, $store_name, $store_address, $store_phone, $store_email, $store_website);
+
+            // Set currency
+            $printer->setCurrency($currency);
+            // Add items
+            foreach ($items as $item) {
+                $printer->addItem(
+                    $item['name'],
+                    $item['qty'],
+                    $item['price']
+                );
+            }
+            // Set tax
+            $printer->setTax($tax_percentage);
+            // Calculate total
+            $printer->calculateSubTotal();
+            $printer->calculateGrandTotal();
+
+            // Set transaction ID
+            $printer->setTransactionID($transaction_id);
+
+            // Set logo
+            // Uncomment the line below if $image_path is defined
+            //$printer->setLogo($image_path);
+
+
+
+            // Print receipt
+            $printer->printReceipt();
+
             return redirect()->back()->with('success', 'Created & Sent For Print Successfuly !');
         }
         return redirect()->back()->with('success', 'Created Successfuly !');
@@ -113,7 +167,14 @@ class InvoiceController extends Controller
      */
     public function show($id)
     {
-        //
+        $invoice =  Invoice::with('detail')->find($id);
+        return view('adminpanel.pages.sale_invoice_show', compact('invoice'));
+    }
+
+    public function print($id)
+    {
+        $invoice =  Invoice::with('detail')->find($id);
+        return view('adminpanel.pages.sale_invoice_print', compact('invoice'));
     }
 
     /**

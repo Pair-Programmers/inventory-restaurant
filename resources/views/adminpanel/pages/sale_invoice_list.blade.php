@@ -1,7 +1,7 @@
 @extends('adminpanel.layout.master')
 <!-- ================================== EXTEND TITLE AND META TAGS ============================= -->
 @section('title-meta')
-<title>Bizblanca | Dashboard</title>
+<title>Inventory | Dashboard</title>
 <meta name="description" content="this is description">
 @endsection
 <!-- ====================================== EXTRA CSS LINKS ==================================== -->
@@ -82,8 +82,8 @@
             @foreach($invoices as $invoice)
                 <tr class="gradeX" id="row-{{$invoice->id}}">
                     <td>{{$counter}}</td>
-                    <td class="center">{{sprintf("%04d", $invoice->id)}}</td>
-                    <td class="center">{{date('d-m-Y', strtotime($invoice->issue_date))}}</td>
+                    <td class="center">{{sprintf("%05d", $invoice->id)}}</td>
+                    <td class="center">{{date('d-M-Y', strtotime($invoice->issue_date))}}</td>
                     <td class="center">{{$invoice->amount}}</td>
                     <td class="center">{{$invoice->no_of_items}}</td>
                     <td class="center">{{$invoice->customer->name}}</td>
@@ -92,6 +92,9 @@
                     <td class="center">{{$invoice->createdBy->name}}</td>
 
                     <td>
+                        <a href="{{route('admin.sale_invoice.show', $invoice->id)}}">
+                            <small class="label label-warning"><i class="fa"></i>View</small>
+                        </a>
                         <a href="{{route('admin.sale_invoice.show', $invoice->id)}}">
                             <small class="label label-primary"><i class="fa"></i>Edit</small>
                         </a>
@@ -218,7 +221,7 @@
                         swal("Coudnt Found!", "News not Found", "error");
                     }
                     else{
-                        swal("Error!", "Some Logical Error", "error");
+                        swal("Error!", "Not Authorize | Logical Error", "error");
                     }
                 },
                 error: function (response){

@@ -119,7 +119,7 @@
             </li>
 
 
-            {{-- <li>
+            <li>
                 <a href="{{ route('admin.employee.index') }}">
                     <i class="fa fa-group"></i> <span class="nav-label">Employees</span><span class="fa arrow"></span>
                 </a>
@@ -127,21 +127,21 @@
                     <li><a href="{{ route('admin.employee.create') }}">Create</a></li>
                     <li><a href="{{ route('admin.employee.index') }}">List / Report</a></li>
                 </ul>
-            </li> --}}
+            </li>
 
 
 
 
             <li>
                 <a href="{{ route('admin.login') }}">
-                    <i class="fa fa-file-text"></i> <span class="nav-label">Reposrts</span><span class="fa arrow"></span>
+                    <i class="fa fa-file-text"></i> <span class="nav-label">Reports</span><span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level collapse">
                     <li><a href="{{ route('admin.sale_invoice.index') }}">Sales List</a></li>
                     <li><a href="{{ route('admin.purchase_invoice.index') }}">Purchase List</a></li>
                     <li><a href="{{ route('admin.expense.category.index') }}">Expense List</a></li>
                     <li><a href="{{ route('admin.product.index') }}">Products List</a></li>
-                    {{-- <li><a href="{{ route('admin.employee.index') }}">Employees List</a></li> --}}
+                    <li><a href="{{ route('admin.employee.index') }}">Employees List</a></li>
                     <li><a href="{{ route('admin.customer.index') }}">Customers List</a></li>
                     <li><a href="{{ route('admin.vendor.index') }}">Vendors List</a></li>
                 </ul>

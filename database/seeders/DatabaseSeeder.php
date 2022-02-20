@@ -21,22 +21,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Admin::create(['name' => 'Hamza Saqib', 'email' => 'mianhamza7262@gmail.com', 'role' => 'Super Admin',
-        'phone' => '03239991999', 'profile_image' => 'hamza.jpg', 'password' => Hash::make('hamza7262')]);
-        Admin::create(['name' => 'Admin', 'email' => 'admin@gmail.com', 'role' => 'Admin',
-        'phone' => '03217770185', 'profile_image' => 'sohail.jpeg', 'password' => Hash::make('admin@123')]);
-        Admin::create(['name' => 'Arslan', 'email' => 'arslansajid199@yahoo.com', 'role' => 'Admin',
-        'phone' => '03239991999', 'profile_image' => 'arslan.JPG', 'password' => Hash::make('arsl199')]);
+        Admin::create(['name' => 'Super Admin', 'email' => 'admin@pairprogrammers.pk', 'role' => 'Super Admin',
+        'phone' => '03231234567', 'profile_image' => 'profile_image_icon.jpg', 'password' => Hash::make('admin@123')]);
+        Admin::create(['name' => 'Editor', 'email' => 'editor@pairprogrammers.pk', 'role' => 'Editor',
+        'phone' => '03231234567', 'profile_image' => 'profile_image_icon.jpg', 'password' => Hash::make('editor@123')]);
 
         Account::create(['name'=>'Cash Counter', 'type'=>'Cash', 'as_off_date'=>date('Y-m-d'), 'opening_balance'=>0, 'balance'=>0, 'created_by'=>1]);
         Account::create(['name'=>'Bank Account', 'type'=>'Bank', 'as_off_date'=>date('Y-m-d'), 'opening_balance'=>0, 'balance'=>0, 'created_by'=>1]);
-
+        Customer::create(['name'=>'Cash Customer', 'type'=>'Cash', 'created_by'=>1]);
         ProductCategory::create(['name'=>'Food', 'created_by'=>1]);
-        ProductCategory::create(['name'=>'Bread', 'created_by'=>1]);
-        ProductCategory::create(['name'=>'Hot Drinks', 'created_by'=>1]);
-        ProductCategory::create(['name'=>'Cold Drinks', 'created_by'=>1]);
+        // ProductCategory::create(['name'=>'Bread', 'created_by'=>1]);
+        // ProductCategory::create(['name'=>'Hot Drinks', 'created_by'=>1]);
+        // ProductCategory::create(['name'=>'Cold Drinks', 'created_by'=>1]);
 
-        // Product::create(['name' => 'Haleem Half (Chicken)', 'cost_price' => 80, 'sale_price' => 90, 'product_category_id' => 1, 'created_by' => 1]);
+         Product::create(['name' => 'Haleem Half (Chicken)', 'cost_price' => 80, 'sale_price' => 90, 'product_category_id' => 1, 'created_by' => 1]);
         // Product::create(['name' => 'Haleem Full (Chicken)', 'cost_price' => 130, 'sale_price' => 150, 'product_category_id' => 1, 'created_by' => 1]);
         // Product::create(['name' => 'Haleem Half (Beef)', 'cost_price' => 100, 'sale_price' => 120, 'product_category_id' => 1, 'created_by' => 1]);
         // Product::create(['name' => 'Haleem Full (Beef)', 'cost_price' => 180, 'sale_price' => 200, 'product_category_id' => 1, 'created_by' => 1]);
@@ -91,19 +89,19 @@ class DatabaseSeeder extends Seeder
 
         $rows = 10;
         //\App\Models\User::factory($rows)->create();
-        \App\Models\Admin::factory($rows)->create();
-        \App\Models\Customer::factory($rows)->create();
-        \App\Models\Vendor::factory($rows)->create();
-        \App\Models\Account::factory($rows)->create();
-        \App\Models\ExpenseCategory::factory($rows)->create();
-        \App\Models\Expense::factory($rows + $rows)->create();
-        \App\Models\ProductCategory::factory($rows)->create();
-        \App\Models\ProductSubCategory::factory($rows)->create();
-        \App\Models\Product::factory($rows + $rows)->create();
-        \App\Models\Invoice::factory($rows)->create();
-        \App\Models\InvoiceDetail::factory($rows + $rows)->create();
-        \App\Models\Employee::factory($rows)->create();
-        \App\Models\Payment::factory($rows + $rows)->create();
+        // \App\Models\Admin::factory($rows)->create();
+        // \App\Models\Customer::factory($rows)->create();
+        // \App\Models\Vendor::factory($rows)->create();
+        // \App\Models\Account::factory($rows)->create();
+        // \App\Models\ExpenseCategory::factory($rows)->create();
+        // \App\Models\Expense::factory($rows + $rows)->create();
+        // \App\Models\ProductCategory::factory($rows)->create();
+        // \App\Models\ProductSubCategory::factory($rows)->create();
+        // \App\Models\Product::factory($rows + $rows)->create();
+        // \App\Models\Invoice::factory($rows)->create();
+        // \App\Models\InvoiceDetail::factory($rows + $rows)->create();
+        // \App\Models\Employee::factory($rows)->create();
+        // \App\Models\Payment::factory($rows + $rows)->create();
 
         //we can also use this one call
         // $this->call([

@@ -12,8 +12,14 @@ class InvoiceDetail extends Model
     protected $fillable = [
         'product_id',
         'sale_quantity',
+        'purchase_price',
         'sale_price',
         'total_ammount',
         'invoice_id',
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

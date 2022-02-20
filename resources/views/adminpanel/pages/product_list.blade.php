@@ -1,7 +1,7 @@
 @extends('adminpanel.layout.master')
 <!-- ================================== EXTEND TITLE AND META TAGS ============================= -->
 @section('title-meta')
-<title>Bizblanca | Dashboard</title>
+<title>Inventory | Dashboard</title>
 <meta name="description" content="this is description">
 @endsection
 <!-- ====================================== EXTRA CSS LINKS ==================================== -->
@@ -30,7 +30,11 @@
     </div>
 </div>
 
+
 <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="form-group">
+        <a href="{{route('admin.product.create')}}" class="btn btn-primary">+ Add Product</a>
+    </div>
     <div class="row">
 
 
@@ -215,7 +219,7 @@
                         swal("Coudnt Found!", "News not Found", "error");
                     }
                     else{
-                        swal("Error!", "Some Logical Error", "error");
+                        swal("Error!", "Not Authorize | Logical Error", "error");
                     }
                 },
                 error: function (response){
@@ -230,6 +234,64 @@
     });
     }
 </script>
+<script>
+    var Success = `{{\Session::has('success')}}`;
+    var Error = `{{\Session::has('error')}}`;
 
+    if (Success) {
+        setTimeout(function() {
+            toastr.options = {
+                closeButton: true,
+                progressBar: true,
+                showMethod: 'slideDown',
+                timeOut: 7000
+            };
+            toastr.success('Success Message', `{{\Session::get('success')}}`);
+
+        }, 1200);
+    }
+    else if(Error){
+        setTimeout(function() {
+                toastr.options = {
+                    closeButton: true,
+                    progressBar: true,
+                    showMethod: 'slideDown',
+                    timeOut: 4000
+                };
+                toastr.error('Failure Message', `{{\Session::get('error')}}`);
+
+            }, 1200);
+    }
+</script>
+
+<script>
+    var Success = `{{\Session::has('success')}}`;
+    var Error = `{{\Session::has('error')}}`;
+
+    if (Success) {
+        setTimeout(function() {
+            toastr.options = {
+                closeButton: true,
+                progressBar: true,
+                showMethod: 'slideDown',
+                timeOut: 7000
+            };
+            toastr.success('Success Message', `{{\Session::get('success')}}`);
+
+        }, 1200);
+    }
+    else if(Error){
+        setTimeout(function() {
+                toastr.options = {
+                    closeButton: true,
+                    progressBar: true,
+                    showMethod: 'slideDown',
+                    timeOut: 4000
+                };
+                toastr.error('Failure Message', `{{\Session::get('error')}}`);
+
+            }, 1200);
+    }
+</script>
 
 @endsection

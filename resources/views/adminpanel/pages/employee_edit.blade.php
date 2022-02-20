@@ -1,7 +1,7 @@
 @extends('adminpanel.layout.master')
 <!-- ================================== EXTEND TITLE AND META TAGS ============================= -->
 @section('title-meta')
-    <title>Bizblanca | Dashboard</title>
+    <title>Inventory | Dashboard</title>
     <meta name="description" content="this is description">
 @endsection
 <!-- ====================================== EXTRA CSS LINKS ==================================== -->
@@ -139,5 +139,34 @@
                 radioClass: 'iradio_square-green',
             });
         });
+    </script>
+    <script>
+        var Success = `{{\Session::has('success')}}`;
+        var Error = `{{\Session::has('error')}}`;
+
+        if (Success) {
+            setTimeout(function() {
+                toastr.options = {
+                    closeButton: true,
+                    progressBar: true,
+                    showMethod: 'slideDown',
+                    timeOut: 7000
+                };
+                toastr.success('Success Message', `{{\Session::get('success')}}`);
+
+            }, 1200);
+        }
+        else if(Error){
+            setTimeout(function() {
+                    toastr.options = {
+                        closeButton: true,
+                        progressBar: true,
+                        showMethod: 'slideDown',
+                        timeOut: 4000
+                    };
+                    toastr.error('Failure Message', `{{\Session::get('error')}}`);
+
+                }, 1200);
+        }
     </script>
 @endsection

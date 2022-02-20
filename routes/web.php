@@ -40,8 +40,8 @@ Route::prefix('admin')->name('admin.')->middleware('authAdmin')->group(function(
             Route::post('/store', [App\Http\Controllers\Adminpanel\ExpenseCategoryController::class, 'store'])->name('store');
             Route::get('/show/{id}', [App\Http\Controllers\Adminpanel\ExpenseCategoryController::class, 'show'])->name('show');
             Route::get('/edit/{id}', [App\Http\Controllers\Adminpanel\ExpenseCategoryController::class, 'edit'])->name('edit');
-            Route::post('/update/{id}', [App\Http\Controllers\Adminpanel\ExpenseCategoryController::class, 'update'])->name('update');
-            Route::get('/destroy/{id}', [App\Http\Controllers\Adminpanel\ExpenseCategoryController::class, 'destroy'])->name('destroy');
+            Route::post('/update/{id}', [App\Http\Controllers\Adminpanel\ExpenseCategoryController::class, 'update'])->name('update')->middleware('isSuperAdmin');
+            Route::get('/destroy/{id}', [App\Http\Controllers\Adminpanel\ExpenseCategoryController::class, 'destroy'])->name('destroy')->middleware('isSuperAdmin');
         });
 
         Route::get('/index', [App\Http\Controllers\Adminpanel\ExpenseController::class, 'index'])->name('index');
@@ -49,8 +49,8 @@ Route::prefix('admin')->name('admin.')->middleware('authAdmin')->group(function(
         Route::post('/store', [App\Http\Controllers\Adminpanel\ExpenseController::class, 'store'])->name('store');
         Route::get('/show/{id}', [App\Http\Controllers\Adminpanel\ExpenseController::class, 'show'])->name('show');
         Route::get('/edit/{id}', [App\Http\Controllers\Adminpanel\ExpenseController::class, 'edit'])->name('edit');
-        Route::post('/update/{id}', [App\Http\Controllers\Adminpanel\ExpenseController::class, 'update'])->name('update');
-        Route::get('/destroy/{id}', [App\Http\Controllers\Adminpanel\ExpenseController::class, 'destroy'])->name('destroy');
+        Route::post('/update/{id}', [App\Http\Controllers\Adminpanel\ExpenseController::class, 'update'])->name('update')->middleware('isSuperAdmin');
+        Route::get('/destroy/{id}', [App\Http\Controllers\Adminpanel\ExpenseController::class, 'destroy'])->name('destroy')->middleware('isSuperAdmin');
 
     });
 
@@ -62,8 +62,8 @@ Route::prefix('admin')->name('admin.')->middleware('authAdmin')->group(function(
             Route::post('/store', [App\Http\Controllers\Adminpanel\ProductCategoryController::class, 'store'])->name('store');
             Route::get('/show/{id}', [App\Http\Controllers\Adminpanel\ProductCategoryController::class, 'show'])->name('show');
             Route::get('/edit/{id}', [App\Http\Controllers\Adminpanel\ProductCategoryController::class, 'edit'])->name('edit');
-            Route::post('/update/{id}', [App\Http\Controllers\Adminpanel\ProductCategoryController::class, 'update'])->name('update');
-            Route::get('/destroy/{id}', [App\Http\Controllers\Adminpanel\ProductCategoryController::class, 'destroy'])->name('destroy');
+            Route::post('/update/{id}', [App\Http\Controllers\Adminpanel\ProductCategoryController::class, 'update'])->name('update')->middleware('isSuperAdmin');
+            Route::get('/destroy/{id}', [App\Http\Controllers\Adminpanel\ProductCategoryController::class, 'destroy'])->name('destroy')->middleware('isSuperAdmin');
         });
 
         Route::get('/index', [App\Http\Controllers\Adminpanel\ProductController::class, 'index'])->name('index');
@@ -71,8 +71,8 @@ Route::prefix('admin')->name('admin.')->middleware('authAdmin')->group(function(
         Route::post('/store', [App\Http\Controllers\Adminpanel\ProductController::class, 'store'])->name('store');
         Route::get('/show/{id}', [App\Http\Controllers\Adminpanel\ProductController::class, 'show'])->name('show');
         Route::get('/edit/{id}', [App\Http\Controllers\Adminpanel\ProductController::class, 'edit'])->name('edit');
-        Route::post('/update/{id}', [App\Http\Controllers\Adminpanel\ProductController::class, 'update'])->name('update');
-        Route::get('/destroy/{id}', [App\Http\Controllers\Adminpanel\ProductController::class, 'destroy'])->name('destroy');
+        Route::post('/update/{id}', [App\Http\Controllers\Adminpanel\ProductController::class, 'update'])->name('update')->middleware('isSuperAdmin');
+        Route::get('/destroy/{id}', [App\Http\Controllers\Adminpanel\ProductController::class, 'destroy'])->name('destroy')->middleware('isSuperAdmin');
 
     });
 
@@ -95,8 +95,8 @@ Route::prefix('admin')->name('admin.')->middleware('authAdmin')->group(function(
         Route::post('/store', [App\Http\Controllers\Adminpanel\CustomerController::class, 'store'])->name('store');
         Route::get('/show/{id}', [App\Http\Controllers\Adminpanel\CustomerController::class, 'show'])->name('show');
         Route::get('/edit/{id}', [App\Http\Controllers\Adminpanel\CustomerController::class, 'edit'])->name('edit');
-        Route::post('/update/{id}', [App\Http\Controllers\Adminpanel\CustomerController::class, 'update'])->name('update');
-        Route::get('/destroy/{id}', [App\Http\Controllers\Adminpanel\CustomerController::class, 'destroy'])->name('destroy');
+        Route::post('/update/{id}', [App\Http\Controllers\Adminpanel\CustomerController::class, 'update'])->name('update')->middleware('isSuperAdmin');
+        Route::get('/destroy/{id}', [App\Http\Controllers\Adminpanel\CustomerController::class, 'destroy'])->name('destroy')->middleware('isSuperAdmin');
 
     });
 
@@ -107,8 +107,8 @@ Route::prefix('admin')->name('admin.')->middleware('authAdmin')->group(function(
         Route::post('/store', [App\Http\Controllers\Adminpanel\VendorController::class, 'store'])->name('store');
         Route::get('/show/{id}', [App\Http\Controllers\Adminpanel\VendorController::class, 'show'])->name('show');
         Route::get('/edit/{id}', [App\Http\Controllers\Adminpanel\VendorController::class, 'edit'])->name('edit');
-        Route::post('/update/{id}', [App\Http\Controllers\Adminpanel\VendorController::class, 'update'])->name('update');
-        Route::get('/destroy/{id}', [App\Http\Controllers\Adminpanel\VendorController::class, 'destroy'])->name('destroy');
+        Route::post('/update/{id}', [App\Http\Controllers\Adminpanel\VendorController::class, 'update'])->name('update')->middleware('isSuperAdmin');
+        Route::get('/destroy/{id}', [App\Http\Controllers\Adminpanel\VendorController::class, 'destroy'])->name('destroy')->middleware('isSuperAdmin');
 
     });
 
@@ -119,8 +119,8 @@ Route::prefix('admin')->name('admin.')->middleware('authAdmin')->group(function(
         Route::post('/store', [App\Http\Controllers\Adminpanel\PaymentController::class, 'store'])->name('store');
         Route::get('/show/{id}', [App\Http\Controllers\Adminpanel\PaymentController::class, 'show'])->name('show');
         Route::get('/edit/{id}', [App\Http\Controllers\Adminpanel\PaymentController::class, 'edit'])->name('edit');
-        Route::post('/update/{id}', [App\Http\Controllers\Adminpanel\PaymentController::class, 'update'])->name('update');
-        Route::get('/destroy/{id}', [App\Http\Controllers\Adminpanel\PaymentController::class, 'destroy'])->name('destroy');
+        Route::post('/update/{id}', [App\Http\Controllers\Adminpanel\PaymentController::class, 'update'])->name('update')->middleware('isSuperAdmin');
+        Route::get('/destroy/{id}', [App\Http\Controllers\Adminpanel\PaymentController::class, 'destroy'])->name('destroy')->middleware('isSuperAdmin');
 
     });
 
@@ -131,9 +131,10 @@ Route::prefix('admin')->name('admin.')->middleware('authAdmin')->group(function(
         Route::get('/create', [App\Http\Controllers\Adminpanel\InvoiceController::class, 'create'])->name('create');
         Route::post('/store', [App\Http\Controllers\Adminpanel\InvoiceController::class, 'store'])->name('store');
         Route::get('/show/{id}', [App\Http\Controllers\Adminpanel\InvoiceController::class, 'show'])->name('show');
+        Route::get('/print/{id}', [App\Http\Controllers\Adminpanel\InvoiceController::class, 'print'])->name('print');
         Route::get('/edit/{id}', [App\Http\Controllers\Adminpanel\InvoiceController::class, 'edit'])->name('edit');
-        Route::post('/update/{id}', [App\Http\Controllers\Adminpanel\InvoiceController::class, 'update'])->name('update');
-        Route::get('/destroy/{id}', [App\Http\Controllers\Adminpanel\InvoiceController::class, 'destroy'])->name('destroy');
+        Route::post('/update/{id}', [App\Http\Controllers\Adminpanel\InvoiceController::class, 'update'])->name('update')->middleware('isSuperAdmin');
+        Route::get('/destroy/{id}', [App\Http\Controllers\Adminpanel\InvoiceController::class, 'destroy'])->name('destroy')->middleware('isSuperAdmin');
 
     });
 
@@ -145,8 +146,8 @@ Route::prefix('admin')->name('admin.')->middleware('authAdmin')->group(function(
         Route::post('/store', [App\Http\Controllers\Adminpanel\PurchaseInvoiceController::class, 'store'])->name('store');
         Route::get('/show/{id}', [App\Http\Controllers\Adminpanel\PurchaseInvoiceController::class, 'show'])->name('show');
         Route::get('/edit/{id}', [App\Http\Controllers\Adminpanel\PurchaseInvoiceController::class, 'edit'])->name('edit');
-        Route::post('/update/{id}', [App\Http\Controllers\Adminpanel\PurchaseInvoiceController::class, 'update'])->name('update');
-        Route::get('/destroy/{id}', [App\Http\Controllers\Adminpanel\PurchaseInvoiceController::class, 'destroy'])->name('destroy');
+        Route::post('/update/{id}', [App\Http\Controllers\Adminpanel\PurchaseInvoiceController::class, 'update'])->name('update')->middleware('isSuperAdmin');
+        Route::get('/destroy/{id}', [App\Http\Controllers\Adminpanel\PurchaseInvoiceController::class, 'destroy'])->name('destroy')->middleware('isSuperAdmin');
 
     });
 

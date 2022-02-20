@@ -1,7 +1,7 @@
 @extends('adminpanel.layout.master')
 <!-- ================================== EXTEND TITLE AND META TAGS ============================= -->
 @section('title-meta')
-    <title>Bizblanca | Dashboard</title>
+    <title>Inventory | Dashboard</title>
     <meta name="description" content="this is description">
 @endsection
 <!-- ====================================== EXTRA CSS LINKS ==================================== -->
@@ -149,18 +149,19 @@
                                 </div>
 
                                 <div class="ibox-content">
-                                    <h1 id="totalAmmount"> 0 Rs.
-                                    </h1>
+                                    <h1 >Gross Total: <strong id="grossTotalAmmount">0</strong> Rs.</h1>
+                                    <h1 >Discount: <strong id="discountAmmount">0</strong> Rs.</h1>
+                                    <h1 >Total: <strong id="totalAmmount">0</strong> Rs.</h1>
 
                                 </div>
                                 <br>
                                 <div class="hr-line-dashed"></div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">Discount</label>
+                                    <label class="col-sm-2 control-label">Enter Discount</label>
 
                                     <div class="col-sm-2">
-                                        <input type="number" class="form-control " name="discount" value="0">
+                                        <input type="number" class="form-control " min="0" id="discount" name="discount" value="0">
                                         <input id="ammount" type="hidden"  name="amount" value="0">
                                     </div>
 
@@ -199,6 +200,8 @@
         var products = @json($products);
         console.log(products);
         var counter = 1;
+        var grossTotal = 0;
+        var discount = 0;
         function addProduct() {
             if($('#quantity').val()){
                 var productIndex = $('#productSelect').val();
@@ -254,9 +257,17 @@
                     return true;
                 });
             }
-            $('#totalAmmount').html(tottalAmount + " Rs." );
-            $('#ammount').val(tottalAmount);
+            grossTotal = tottalAmount;
+            $('#grossTotalAmmount').html(grossTotal);
+            $('#discountAmmount').html(discount);
+            $('#totalAmmount').html( (grossTotal-discount));
+            $('#ammount').val(grossTotal-discount);
         }
+        $('#discount').on('input',function(e){
+            discount = $('#discount').val();
+            calculateTotalAmmount();
+        });
+
     </script>
 
     <script>

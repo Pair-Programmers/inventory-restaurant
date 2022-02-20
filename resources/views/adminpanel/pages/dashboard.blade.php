@@ -1,7 +1,7 @@
 @extends('adminpanel.layout.master')
 <!-- ================================== EXTEND TITLE AND META TAGS ============================= -->
 @section('title-meta')
-<title>Bizblanca | Dashboard</title>
+<title>Inventory | Dashboard</title>
 <meta name="description" content="this is description">
 @endsection
 <!-- ====================================== EXTRA CSS LINKS ==================================== -->
@@ -78,6 +78,83 @@
                     </div>
                 </div>
             </div>
+
+            <a href="{{route('admin.product.create')}}">
+            <div class="col-lg-3">
+                <div class="widget style1 navy-bg">
+                    <div class="row">
+                        <div class="col-xs-8 text-left">
+                            <span> Create New</span>
+                            <h2 class="font-bold">Product</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </a>
+
+            <a href="{{route('admin.expense.create')}}">
+            <div class="col-lg-3">
+                <div class="widget style1 navy-bg">
+                    <div class="row">
+                        <div class="col-xs-8 text-left">
+                            <span> Create New</span>
+                            <h2 class="font-bold">Expense</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </a>
+
+            <a href="{{route('admin.customer.create')}}">
+            <div class="col-lg-3">
+                <div class="widget style1 navy-bg">
+                    <div class="row">
+                        <div class="col-xs-8 text-left">
+                            <span> Create New</span>
+                            <h2 class="font-bold">Customer</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </a>
+            <a href="{{route('admin.vendor.create')}}">
+            <div class="col-lg-3">
+                <div class="widget style1 navy-bg">
+                    <div class="row">
+                        <div class="col-xs-8 text-left">
+                            <span> Create New</span>
+                            <h2 class="font-bold">Vendor</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </a>
+
+            <a href="{{route('admin.sale_invoice.create')}}">
+                <div class="col-lg-3">
+                    <div class="widget style1 lazur-bg">
+                        <div class="row">
+                            <div class="col-xs-8 text-left">
+                                <span> Create New</span>
+                                <h2 class="font-bold">Sale Invoice</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </a>
+
+                <a href="{{route('admin.purchase_invoice.create')}}">
+                    <div class="col-lg-3">
+                        <div class="widget style1 lazur-bg">
+                            <div class="row">
+                                <div class="col-xs-8 text-left">
+                                    <span> Create New</span>
+                                    <h2 class="font-bold">Purchase Invoice</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
 
 
         </div>

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Bizblanca | Dashboard</title>
+    <title>Inventory | Dashboard</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{asset('adminpanel')}}/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{asset('adminpanel')}}/font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -23,7 +23,7 @@
         <div id="page-wrapper" class="gray-bg">
         <?=$header; ?>
         <div class="wrapper wrapper-content animated fadeIn">
-           
+
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
@@ -58,7 +58,7 @@
                 </div>
             </div>
         </div>
-            
+
         </div>
         <?=$footer; ?>
 

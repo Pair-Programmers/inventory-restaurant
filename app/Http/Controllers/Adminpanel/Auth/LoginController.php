@@ -66,7 +66,7 @@ class LoginController extends Controller
             Auth::guard('admin')->login($admin);
             return  redirect()->intended(route('admin.home'));
         }
-        return redirect()->back()->withInput($request->only('email'));
+        return redirect()->back()->withInput($request->only('email'))->withErrors('Invalid credentials, try again !');;
     }
 
 
