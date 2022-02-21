@@ -22,7 +22,7 @@ class CreateInvoiceDetailsTable extends Migration
             $table->integer('total_ammount');
 
             $table->bigInteger('invoice_id')->unsigned();
-            $table->foreign('invoice_id')->references('id')->on('invoices')->cascadeOnDelete();
+            $table->foreign('invoice_id')->references('id')->on('invoices')->onDelete("cascade");
             $table->timestamps();
         });
     }

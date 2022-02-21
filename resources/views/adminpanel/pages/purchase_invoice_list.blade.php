@@ -90,9 +90,9 @@
                     <td class="center">{{$invoice->createdBy->name}}</td>
 
                     <td>
-                        <a href="{{route('admin.sale_invoice.show', $invoice->id)}}">
+                        {{-- <a href="{{route('admin.sale_invoice.show', $invoice->id)}}">
                             <small class="label label-primary"><i class="fa"></i>Edit</small>
-                        </a>
+                        </a> --}}
                         <a onclick="deleteinvoice({{$invoice->id}})">
                             <small class="label label-danger"><i class="fa"></i>Delete</small>
                         </a>
@@ -187,7 +187,7 @@
     }
 </script>
 <script>
-    function deleteProduct(id) {
+    function deleteinvoice(id) {
     swal({
 
         title: "You really want to delete ？", // You really want to delete ?
@@ -204,7 +204,7 @@
         if (isConfirm) {
             $.ajax({
                 method: 'GET',
-                url: "{{ route('admin.product.destroy', '') }}/" + id,
+                url: "{{ route('admin.purchase_invoice.destroy', '') }}/" + id,
                 success: function(response) {
                     console.log(response);
                     if(response.success){

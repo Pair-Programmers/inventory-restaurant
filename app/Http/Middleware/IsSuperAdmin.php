@@ -17,7 +17,7 @@ class IsSuperAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::guard('admin')->user()->type == 'Super Admin'){
+        if(Auth::guard('admin')->user()->role == 'Super Admin'){
 
             return $next($request);
         }

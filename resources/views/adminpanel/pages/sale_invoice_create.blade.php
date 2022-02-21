@@ -169,7 +169,7 @@
                                     <label class="col-sm-1 control-label">Ref #</label>
 
                                     <div class="col-sm-2">
-                                        <input type="number" class="form-control" name="reference_no" placeholder="Optional" >
+                                        <input type="text" class="form-control" name="reference_no" placeholder="Optional" >
                                     </div>
 
                                     <label class="col-sm-1 control-label">Description</label>

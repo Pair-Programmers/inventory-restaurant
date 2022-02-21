@@ -20,7 +20,7 @@ class CreateInvoicesTable extends Migration
             $table->integer('no_of_products');
             $table->date('issue_date');
             $table->integer('discount')->default(0);
-            $table->integer('reference_no')->nullable();
+            $table->string('reference_no')->nullable();
             $table->longText('description')->nullable();
             $table->string('type');
             $table->string('group');

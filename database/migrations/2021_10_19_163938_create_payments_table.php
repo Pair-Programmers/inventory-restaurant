@@ -23,7 +23,7 @@ class CreatePaymentsTable extends Migration
 
             //foreign keys
             $table->bigInteger('invoice_id')->unsigned()->nullable();
-            $table->foreign('invoice_id')->references('id')->on('invoices');
+            $table->foreign('invoice_id')->references('id')->on('invoices')->onDelete("cascade");
             $table->bigInteger('expense_id')->unsigned()->nullable();
             $table->foreign('expense_id')->references('id')->on('expenses');
             $table->bigInteger('employee_id')->unsigned()->nullable();

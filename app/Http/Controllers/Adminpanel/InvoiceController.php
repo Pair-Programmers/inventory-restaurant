@@ -106,15 +106,15 @@ class InvoiceController extends Controller
                 return redirect()->route('admin.sale_invoice.print', $invoice->id);
             }
             $mid = '';
-            $store_name = 'YOURMART';
-            $store_address = 'Mart Address';
-            $store_phone = '1234567890';
+            $store_name = 'AL-KHIDMAT';
+            $store_address = '106 - M Block Gulberg III Lahore';
+            $store_phone = '+92 300 0771601';
             $store_email = 'yourmart@email.com';
             $store_website = '';
             $tax_percentage = $inputs['discount'];
             $transaction_id = sprintf("%05d", $invoice->id);
-            $currency = 'Rs';
-            $image_path = '';
+            $currency = '';
+            $image_path = asset('storage'). '/images/Capture.PNG';
 
             // Init printer
             $printer = new ReceiptPrinter;
@@ -138,6 +138,7 @@ class InvoiceController extends Controller
             }
             // Set tax
             $printer->setTax($tax_percentage);
+            $printer->setCustomerName($inputs['reference_no']);
             // Calculate total
             $printer->calculateSubTotal();
             $printer->calculateGrandTotal();
@@ -229,11 +230,11 @@ class InvoiceController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::find($id);
-        if($product){
-            $product->delete();
-            return response()->json(['success'=>'Product deleted successfully !']);
+        $invoice = Invoice::find($id);
+        if($invoice){
+            $invoice->delete();
+            return response()->json(['success'=>'invoice deleted successfully !']);
         }
-        return response()->json(['error'=>'Product not found !']);
+        return response()->json(['error'=>'invoice not found !']);
     }
 }

@@ -167,11 +167,11 @@ class PurchaseInvoiceController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::find($id);
-        if($product){
-            $product->delete();
-            return response()->json(['success'=>'Product deleted successfully !']);
+        $invoice = Invoice::find($id);
+        if($invoice){
+            $invoice->delete();
+            return response()->json(['success'=>'invoice deleted successfully !']);
         }
-        return response()->json(['error'=>'Product not found !']);
+        return response()->json(['error'=>'invoice not found !']);
     }
 }
