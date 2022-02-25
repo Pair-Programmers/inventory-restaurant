@@ -19,7 +19,7 @@ return [
     | Typically printer name or IP address.
     |
     */
-    'connector_descriptor' => 'BlackCopper 80mm Series',
+    'connector_descriptor' => 'BC-85AC-G1',
     /*
     |--------------------------------------------------------------------------
     | Printer port

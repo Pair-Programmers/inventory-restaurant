@@ -107,7 +107,7 @@ class InvoiceController extends Controller
             }
             $mid = '';
             $store_name = 'AL-KHIDMAT';
-            $store_address = '106 - M Block Gulberg III Lahore';
+            $store_address = '1.5 km Defence road, Moderno Fabrics Branch';
             $store_phone = '+92 300 0771601';
             $store_email = 'yourmart@email.com';
             $store_website = '';
