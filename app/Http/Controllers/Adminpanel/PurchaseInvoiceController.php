@@ -73,17 +73,19 @@ class PurchaseInvoiceController extends Controller
         $inputs['amount'] = intval($inputs['amount']);
         $product_ids = $inputs['product_id'];
         $product_qtys = $inputs['product_qty'];
+        $product_purchase_price = $inputs['product_purchase_price'];
 
         unset($inputs['product_id']);
         unset($inputs['product_qty']);
+        unset($inputs['product_purchase_price']);
 
         $invoice = Invoice::create($inputs);
         for ($i=0; $i < sizeof($product_ids); $i++) {
             $product = Product::find($product_ids[$i]);
             InvoiceDetail::create(['product_id'=>$product_ids[$i],
                              'sale_quantity'=>$product_qtys[$i],
-                             'sale_price'=>$product->sale_price,
-                             'total_ammount'=>$product->sale_price * $product_qtys[$i],
+                             'purchase_price'=>$product_purchase_price[$i],
+                             'total_ammount'=>$product_purchase_price[$i] * $product_qtys[$i],
                              'invoice_id'=>$invoice->id]);
             $product->available_qty = $product->available_qty + $product_qtys[$i];
             $product->save();
@@ -137,26 +139,7 @@ class PurchaseInvoiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Product::find($id);
-        $data[] = null;
-        $inputs = $request->all();
-        if($request->hasfile('images'))
-        {
-            foreach($request->file('images') as $key => $image)
-            {
-                $name=time().'_'. $key . '_'.$image->getClientOriginalName();
-                $image->move(public_path().'/storage/images/products', $name);
-                $data[] = $name;
-            }
-        }
-        $inputs['images'] = json_encode($data);
-        $inputs['created_by'] = Auth::guard('admin')->id();
-        $inputs['available_qty'] = $inputs['opening_qty'];
-        if($product){
-            $product->update($inputs);
-            return redirect()->back()->with('success', 'Created Successfuly !');
-        }
-        return redirect()->back()->with('error', 'Error while creating !');
+
     }
 
     /**

@@ -222,6 +222,7 @@
         var counter = 1;
         var grossTotal = 0;
         var discount = 0;
+        var cashRecieved = 0;
         function addProduct() {
             if($('#quantity').val()){
                 var productIndex = $('#productSelect').val();
@@ -282,9 +283,21 @@
             $('#discountAmmount').html(discount);
             $('#totalAmmount').html( (grossTotal-discount));
             $('#ammount').val(grossTotal-discount);
+            if(cashRecieved > 0){
+                $('#changeAmount').html(cashRecieved- (grossTotal-discount));
+
+            }
+
         }
         $('#discount').on('input',function(e){
             discount = $('#discount').val();
+            calculateTotalAmmount();
+        });
+        function calculateChange(){
+
+        }
+        $('#cashRecievedAmount').on('input',function(e){
+            cashRecieved = $('#cashRecievedAmount').val();
             calculateTotalAmmount();
         });
 

@@ -111,11 +111,15 @@
 
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">Qty</label>
-
                                     <div class="col-sm-2">
-                                        <input id="quantity" class="touchspin1" type="text" min="1" value="1" >
+                                        <input id="quantity" class="touchspin1" type="number" min="1" value="1" >
                                     </div>
 
+
+                                    <label class="col-sm-2 control-label">Purchase Price</label>
+                                    <div class="col-sm-2">
+                                        <input id="purchase_price" class="form-control"  type="number" min="0" >
+                                    </div>
 
 
                                     <div class="col-sm-4 ">
@@ -133,7 +137,8 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>Product Name</th>
-                                                <th>Price</th>
+                                                <th>Purchase Price</th>
+                                                <th>Avg. Sale Price</th>
                                                 <th>Qty</th>
                                                 <th>Amount</th>
                                                 <th>Action</th>
@@ -207,13 +212,16 @@
                 var productIndex = $('#productSelect').val();
                 var productName = $('#productSelect').find(":selected").text();
                 var productQty = $('#quantity').val();
+                var productPurcahsePrice = $('#purchase_price').val();
                 if(productIndex){
+                    var avgPurchasePrice = (products[productIndex].cost_price + parseInt(productPurcahsePrice))/2;
                     $('#productTableBody').append(`<tr id="row-${counter}">
                                                     <td>${counter}</td>
                                                     <td>${products[productIndex].name}</td>
-                                                    <td>${products[productIndex].sale_price}</td>
+                                                    <td>${productPurcahsePrice}</td>
+                                                    <td>${avgPurchasePrice}</td>
                                                     <td>${productQty}</td>
-                                                    <td>${productQty*products[productIndex].sale_price}</td>
+                                                    <td>${productQty*productPurcahsePrice}</td>
                                                     <td>
                                                         <a onclick="deleteProduct(${counter})">
                                                             <small class="label label-danger"><i class="fa"></i>delete</small>
@@ -222,6 +230,7 @@
 
                                                     <input type="hidden" name="product_id[]" value="${products[productIndex].id}">
                                                     <input type="hidden" name="product_qty[]" value="${productQty}">
+                                                    <input type="hidden" name="product_purchase_price[]" value="${productPurcahsePrice}">
                                                 </tr>`);
                     counter++;
 
@@ -242,15 +251,17 @@
               .map(function(){return $(this).val();}).get();
             var products_qty_in_cart = $("input[name='product_qty[]']")
               .map(function(){return $(this).val();}).get();
+              var products_purchase_price_in_cart = $("input[name='product_purchase_price[]']")
+              .map(function(){return $(this).val();}).get();
 
-            console.log(products_in_cart);
-            console.log(products_qty_in_cart);
+            //console.log(products_in_cart);
+            //console.log(products_qty_in_cart);
             products_in_cart.forEach(myFunction)
             function myFunction(product_id, index, arr) {
                 products.every(element => {
                     if(element.id == parseInt(product_id)){
                         console.log(element);
-                        tottalAmount = tottalAmount + (parseInt(products_qty_in_cart[index]) * element.sale_price);
+                        tottalAmount = tottalAmount + (parseInt(products_qty_in_cart[index]) * parseInt(products_purchase_price_in_cart[index]));
                         return false;
 
                     }
@@ -266,6 +277,10 @@
         $('#discount').on('input',function(e){
             discount = $('#discount').val();
             calculateTotalAmmount();
+        });
+
+        $('#productSelect').on('change', function() {
+            $('#purchase_price').attr("placeholder", "Old Cost : " + products[$('#productSelect').val()].cost_price);
         });
 
     </script>

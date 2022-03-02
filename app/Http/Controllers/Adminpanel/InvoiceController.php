@@ -174,8 +174,67 @@ class InvoiceController extends Controller
 
     public function print($id)
     {
+        $items = [];
+
         $invoice =  Invoice::with('detail')->find($id);
-        return view('adminpanel.pages.sale_invoice_print', compact('invoice'));
+        if(env('PRINTER_TYPE') != 'Thermal'){
+            return view('adminpanel.pages.sale_invoice_print', compact('invoice'));
+        }
+        foreach ($invoice->detail as $key => $item_p) {
+            $item_p->product->name;
+            array_push($items, ['name'=>$item_p->product->name, 'qty'=>$item_p->sale_quantity, 'price'=>$item_p->sale_price]);
+        }
+        $mid = '';
+        $store_name = 'AL-KHIDMAT';
+        $store_address = '1.5 km Defence road, Moderno Fabrics Branch';
+        $store_phone = '+92 300 0771601';
+        $store_email = 'yourmart@email.com';
+        $store_website = '';
+        $tax_percentage = $invoice->discount;
+        $transaction_id = sprintf("%05d", $invoice->id);
+        $currency = '';
+        $image_path = asset('storage'). '/images/Capture.PNG';
+
+        // Init printer
+        $printer = new ReceiptPrinter;
+        $printer->init(
+            config('receiptprinter.connector_type'),
+            config('receiptprinter.connector_descriptor')
+        );
+
+        // Set store info
+        $printer->setStore($mid, $store_name, $store_address, $store_phone, $store_email, $store_website);
+
+        // Set currency
+        $printer->setCurrency($currency);
+        // Add items
+        foreach ($items as $item) {
+            $printer->addItem(
+                $item['name'],
+                $item['qty'],
+                $item['price']
+            );
+        }
+        // Set tax
+        $printer->setTax($tax_percentage);
+        $printer->setCustomerName($inputs['reference_no']);
+        // Calculate total
+        $printer->calculateSubTotal();
+        $printer->calculateGrandTotal();
+
+        // Set transaction ID
+        $printer->setTransactionID($transaction_id);
+
+        // Set logo
+        // Uncomment the line below if $image_path is defined
+        //$printer->setLogo($image_path);
+
+
+
+        // Print receipt
+        $printer->printReceipt();
+
+        return redirect()->back()->with('success', 'Created & Sent For Print Successfuly !');
     }
 
     /**
@@ -200,26 +259,7 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Product::find($id);
-        $data[] = null;
-        $inputs = $request->all();
-        if($request->hasfile('images'))
-        {
-            foreach($request->file('images') as $key => $image)
-            {
-                $name=time().'_'. $key . '_'.$image->getClientOriginalName();
-                $image->move(public_path().'/storage/images/products', $name);
-                $data[] = $name;
-            }
-        }
-        $inputs['images'] = json_encode($data);
-        $inputs['created_by'] = Auth::guard('admin')->id();
-        $inputs['available_qty'] = $inputs['opening_qty'];
-        if($product){
-            $product->update($inputs);
-            return redirect()->back()->with('success', 'Created Successfuly !');
-        }
-        return redirect()->back()->with('error', 'Error while creating !');
+        
     }
 
     /**
@@ -231,7 +271,13 @@ class InvoiceController extends Controller
     public function destroy($id)
     {
         $invoice = Invoice::find($id);
+
         if($invoice){
+            foreach ($invoice->detail as $key => $item) {
+                $product = Product::find($item->product_id);
+                $current_qty = $product->available_qty;
+                $product->update(['available_qty'=>($current_qty+$item->sale_quantity)]);
+            }
             $invoice->delete();
             return response()->json(['success'=>'invoice deleted successfully !']);
         }

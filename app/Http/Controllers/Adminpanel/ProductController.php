@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Adminpanel;
 
 use App\Http\Controllers\Controller;
+use App\Models\InvoiceDetail;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
@@ -113,7 +114,19 @@ class ProductController extends Controller
         }
         $inputs['images'] = json_encode($data);
         $inputs['created_by'] = Auth::guard('admin')->id();
-        $inputs['available_qty'] = $inputs['opening_qty'];
+        if($product->opening_qty != $inputs['opening_qty']){
+            $no_of_products_sales = InvoiceDetail::join('invoices', 'invoices.id', '=', 'invoice_details.invoice_id')
+            ->where('invoices.type', 'Sale')
+            ->where('invoice_details.product_id', $product->id)
+            ->sum('invoice_details.sale_quantity');
+
+            $no_of_products_purcahse = InvoiceDetail::join('invoices', 'invoices.id', '=', 'invoice_details.invoice_id')
+            ->where('invoices.type', 'Purchase')
+            ->where('invoice_details.product_id', $product->id)
+            ->sum('invoice_details.sale_quantity');
+
+            $inputs['available_qty'] = $inputs['opening_qty'] + $no_of_products_purcahse - $no_of_products_sales;
+        }
         if($product){
             $product->update($inputs);
             return redirect()->back()->with('success', 'Created Successfuly !');

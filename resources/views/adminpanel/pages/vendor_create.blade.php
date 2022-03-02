@@ -33,7 +33,7 @@
         <div class="row">
 
             <div class="ibox-content">
-                <form method="post" class="form-horizontal" action="{{ route('admin.v endor.store') }}"
+                <form method="post" class="form-horizontal" action="{{ route('admin.vendor.store') }}"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
