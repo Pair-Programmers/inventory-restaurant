@@ -23,6 +23,8 @@ class Product extends Model
         'product_category_id',
         'product_subcategory_id',
         'created_by',
+        'meter',
+        'ghaz',
     ];
 
     public function category()

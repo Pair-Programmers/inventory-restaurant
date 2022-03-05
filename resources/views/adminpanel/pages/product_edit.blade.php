@@ -114,6 +114,22 @@
                     </div>
 
                     <div class="form-group">
+                        <label class="col-sm-2 control-label">Brand</label>
+
+                        <div class="col-sm-4">
+                            <input type="number" class="form-control" name="meter" value="{{$product->meter}}">
+                        </div>
+
+                        <label class="col-sm-2 control-label">Colors</label>
+
+                        <div class="col-sm-4">
+                            <input type="number" class="form-control" name="ghaz" value="{{$product->ghaz}}">
+                        </div>
+
+
+                    </div>
+
+                    <div class="form-group">
                         <label class="col-sm-2 control-label">Note</label>
                         <div class="col-sm-4">
                             <textarea name="description" id="" cols="50" rows="5">{{$product->description}}</textarea>
