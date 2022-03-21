@@ -150,6 +150,7 @@
                                 </div>
 
                                 <div class="ibox-content">
+                                    <h1 >Pre Balance: <strong id="preBalance">0</strong> Rs.</h1>
                                     <h1 >Gross Total: <strong id="grossTotalAmmount">0</strong> Rs.</h1>
                                     <h1 >Discount: <strong id="discountAmmount">0</strong> Rs.</h1>
                                     <h1 >Total: <strong id="totalAmmount">0</strong> Rs.</h1>
@@ -218,11 +219,13 @@
 
     <script>
         var products = @json($products);
+        var customers = @json($customers);
         console.log(products);
         var counter = 1;
         var grossTotal = 0;
         var discount = 0;
         var cashRecieved = 0;
+        var preBalance = 0;
         function addProduct() {
             if($('#quantity').val()){
                 var productIndex = $('#productSelect').val();
@@ -264,8 +267,8 @@
             var products_qty_in_cart = $("input[name='product_qty[]']")
               .map(function(){return $(this).val();}).get();
 
-            console.log(products_in_cart);
-            console.log(products_qty_in_cart);
+            // console.log(products_in_cart);
+            // console.log(products_qty_in_cart);
             products_in_cart.forEach(myFunction)
             function myFunction(product_id, index, arr) {
                 products.every(element => {
@@ -280,9 +283,10 @@
             }
             grossTotal = tottalAmount;
             $('#grossTotalAmmount').html(grossTotal);
+            $('#preBalance').html(preBalance);
             $('#discountAmmount').html(discount);
             $('#totalAmmount').html( (grossTotal-discount));
-            $('#ammount').val(grossTotal-discount);
+            $('#ammount').val(grossTotal-discount+preBalance);
             if(cashRecieved > 0){
                 $('#changeAmount').html(cashRecieved- (grossTotal-discount));
 
@@ -298,6 +302,12 @@
         }
         $('#cashRecievedAmount').on('input',function(e){
             cashRecieved = $('#cashRecievedAmount').val();
+            calculateTotalAmmount();
+        });
+
+        $('#customerSelect').on('change',function(e){
+            console.log($(this).val());
+            preBalance = customers[$(this).val()-1].balance;
             calculateTotalAmmount();
         });
 

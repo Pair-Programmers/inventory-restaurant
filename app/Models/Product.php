@@ -25,6 +25,7 @@ class Product extends Model
         'created_by',
         'meter',
         'ghaz',
+        'kg',
     ];
 
     public function category()

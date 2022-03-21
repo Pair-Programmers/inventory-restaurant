@@ -70,6 +70,9 @@ class InvoiceController extends Controller
         }
         else{
             $inputs['group'] = 'Credit';
+            $preBalance = $customer->balance;
+            $customer->balance = $preBalance + intval($inputs['amount']);
+            $customer->save();
         }
         $inputs['created_by'] = Auth::guard('admin')->id();
         $inputs['amount'] = intval($inputs['amount']);
@@ -259,7 +262,7 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
     }
 
     /**

@@ -114,19 +114,26 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Brand</label>
+                        <label class="col-sm-2 control-label">Meter</label>
 
                         <div class="col-sm-4">
                             <input type="number" class="form-control" name="meter" value="{{$product->meter}}">
                         </div>
 
-                        <label class="col-sm-2 control-label">Colors</label>
+                        <label class="col-sm-2 control-label">Ghaz</label>
 
                         <div class="col-sm-4">
                             <input type="number" class="form-control" name="ghaz" value="{{$product->ghaz}}">
                         </div>
 
+                    </div>
 
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">KG</label>
+
+                        <div class="col-sm-4">
+                            <input type="number" class="form-control" name="kg" value="{{$product->kg}}">
+                        </div>
                     </div>
 
                     <div class="form-group">

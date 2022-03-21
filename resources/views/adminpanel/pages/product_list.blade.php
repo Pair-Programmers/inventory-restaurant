@@ -77,6 +77,7 @@ der-bottom white-bg page-heading">
                                         <th>Brand</th>
                                         <th>Meter</th>
                                         <th>Ghaz</th>
+                                        <th>KG</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -97,6 +98,7 @@ der-bottom white-bg page-heading">
                                             <td class="center">{{ $product->brand }}</td>
                                             <td class="center">{{ $product->meter }}</td>
                                             <td class="center">{{ $product->ghaz }}</td>
+                                            <td class="center">{{ $product->kg }}</td>
 
                                             <td>
                                                 <a href="{{ route('admin.product.edit', $product->id) }}">
@@ -129,6 +131,7 @@ der-bottom white-bg page-heading">
                                         <th>Brand</th>
                                         <th>Meter</th>
                                         <th>Ghaz</th>
+                                        <th>KG</th>
                                         <th>Action</th>
                                     </tr>
                                 </tfoot>

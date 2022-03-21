@@ -135,6 +135,14 @@
                     </div>
 
                     <div class="form-group">
+                        <label class="col-sm-2 control-label">KG</label>
+
+                        <div class="col-sm-4">
+                            <input type="number" class="form-control" name="kg">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label class="col-sm-2 control-label">Note</label>
                         <div class="col-sm-4">
                             <textarea name="description" id="" cols="50" rows="5"></textarea>

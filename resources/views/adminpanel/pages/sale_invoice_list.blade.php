@@ -70,7 +70,7 @@
                 <th>Customer</th>
                 <th>Discount</th>
                 <th>Cash Recieved</th>
-                <th>Created by</th>
+                <th>Type</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -89,7 +89,7 @@
                     <td class="center">{{$invoice->customer->name}}</td>
                     <td class="center">{{$invoice->discount}}</td>
                     <td class="center">{{$invoice->cash_recieved}}</td>
-                    <td class="center">{{$invoice->createdBy->name}}</td>
+                    <td class="center">{{$invoice->group}}</td>
 
                     <td>
                         <a href="{{route('admin.sale_invoice.show', $invoice->id)}}">
@@ -121,7 +121,7 @@
                 <th>Customer</th>
                 <th>Discount</th>
                 <th>Cash Recieved</th>
-                <th>Created by</th>
+                <th>Type</th>
                 <th>Action</th>
             </tr>
             </tfoot>

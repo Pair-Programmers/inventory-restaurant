@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
         // ProductCategory::create(['name'=>'Hot Drinks', 'created_by'=>1]);
         // ProductCategory::create(['name'=>'Cold Drinks', 'created_by'=>1]);
 
-         Product::create(['name' => 'Haleem Half (Chicken)', 'cost_price' => 80, 'sale_price' => 90, 'product_category_id' => 1, 'created_by' => 1]);
+        Product::create(['name' => 'Haleem Half (Chicken)', 'cost_price' => 80, 'sale_price' => 90, 'product_category_id' => 1, 'created_by' => 1]);
         // Product::create(['name' => 'Haleem Full (Chicken)', 'cost_price' => 130, 'sale_price' => 150, 'product_category_id' => 1, 'created_by' => 1]);
         // Product::create(['name' => 'Haleem Half (Beef)', 'cost_price' => 100, 'sale_price' => 120, 'product_category_id' => 1, 'created_by' => 1]);
         // Product::create(['name' => 'Haleem Full (Beef)', 'cost_price' => 180, 'sale_price' => 200, 'product_category_id' => 1, 'created_by' => 1]);
