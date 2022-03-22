@@ -285,8 +285,8 @@
             $('#grossTotalAmmount').html(grossTotal);
             $('#preBalance').html(preBalance);
             $('#discountAmmount').html(discount);
-            $('#totalAmmount').html( (grossTotal-discount));
-            $('#ammount').val(grossTotal-discount+preBalance);
+            $('#totalAmmount').html( (grossTotal-discount) +preBalance);
+            $('#ammount').val(grossTotal-discount);
             if(cashRecieved > 0){
                 $('#changeAmount').html(cashRecieved- (grossTotal-discount));
 

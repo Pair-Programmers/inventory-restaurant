@@ -23,6 +23,7 @@ class Invoice extends Model
         'customer_id',
         'vendor_id',
         'created_by',
+        'pre_balance'
     ];
 
     public function createdBy()

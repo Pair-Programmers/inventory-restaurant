@@ -61,6 +61,9 @@
                                     <thead>
                                     <tr>
                                         <th>Item List</th>
+                                        <th>Meter</th>
+                                        <th>Ghaz</th>
+                                        <th>KG</th>
                                         <th>Quantity</th>
                                         <th>Unit Price</th>
                                         <th>Total Price</th>
@@ -72,6 +75,11 @@
                                             <td>
                                                 <strong>{{$item->product->name}}</strong>
                                             </td>
+
+                                            <td>{{$item->product->meter}}</td>
+                                            <td>{{$item->product->ghaz}}</td>
+                                            <td>{{$item->product->kg}}</td>
+
                                             <td>{{$item->sale_quantity}}</td>
                                             <td>{{$item->sale_price}}</td>
                                             <td>{{$item->total_ammount}}</td>
@@ -87,6 +95,10 @@
                             <table class="table invoice-total">
                                 <tbody>
                                     <tr>
+                                        <td><strong>Pre. Balance :</strong></td>
+                                        <td>RS {{$invoice->pre_balance}}.00</td>
+                                    </tr>
+                                    <tr>
                                         <td><strong>GROSS TOTAL :</strong></td>
                                         <td>RS {{$invoice->amount + $invoice->discount}}.00</td>
                                     </tr>
@@ -96,7 +108,7 @@
                                     </tr>
                                     <tr>
                                         <td><strong>TOTAL :</strong></td>
-                                        <td>RS{{$invoice->amount}}.00</td>
+                                        <td>RS {{$invoice->amount + $invoice->pre_balance}}.00</td>
                                     </tr>
                                 </tbody>
                             </table>

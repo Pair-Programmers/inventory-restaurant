@@ -71,11 +71,18 @@ class InvoiceController extends Controller
         else{
             $inputs['group'] = 'Credit';
             $preBalance = $customer->balance;
-            $customer->balance = $preBalance + intval($inputs['amount']);
+            $inputs['pre_balance'] = $customer->balance;
+            if($inputs['cash_recieved'] > 0){
+                $customer->balance = $preBalance + intval($inputs['amount']) - intval($inputs['cash_recieved']);
+            }
+            else{
+                $customer->balance = $preBalance + intval($inputs['amount']);
+            }
             $customer->save();
         }
         $inputs['created_by'] = Auth::guard('admin')->id();
         $inputs['amount'] = intval($inputs['amount']);
+
         $product_ids = $inputs['product_id'];
         $product_qtys = $inputs['product_qty'];
 
@@ -102,6 +109,12 @@ class InvoiceController extends Controller
             $current_balance = $account->balance;
             $account->balance = $current_balance + $inputs['amount'];
             $account->save();
+        }
+        else{
+            if($inputs['cash_recieved'] > 0){
+                Payment::create(['amount'=>intval($inputs['cash_recieved']), 'payment_date'=>date('Y-m-d'), 'group'=>'In', 'note'=>'Recieved in Credit Invoice # '. $invoice->id,
+             'type'=>'Sale', 'invoice_id'=>$invoice->id, 'account_id'=>1,  'created_by'=>Auth::guard('admin')->id()]);
+            }
         }
 
         if($request->button == 'Save & Print'){
