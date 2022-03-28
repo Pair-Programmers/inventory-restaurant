@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Adminpanel;
 
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
+use App\Models\Invoice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -62,7 +63,10 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        //
+        $customer = Customer::findOrFail($id);
+        $invoices = Invoice::where('customer_id', $customer->id)->get();
+        return view('adminpanel.pages.customer_show', compact('customer', 'invoices'));
+
     }
 
     /**
