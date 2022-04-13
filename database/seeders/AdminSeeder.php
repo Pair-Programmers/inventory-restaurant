@@ -23,4 +23,11 @@ class AdminSeeder extends Seeder
         'phone' => '03239991999', 'profile_image' => 'admin_profile.jpg', 'password' => Hash::make('arsl199')]);
         //\App\Models\Admin::factory(10)->create();
     }
+
+    // Main account asif.fabric177@gmail.com
+    // pass:MashAllah123
+
+    // second account
+    // umerasif940@gmail.com
+    // Pass:AbraarA1234567890
 }

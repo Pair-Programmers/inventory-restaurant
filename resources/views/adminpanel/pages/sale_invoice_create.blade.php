@@ -274,7 +274,7 @@
                 products.every(element => {
                     if(element.id == parseInt(product_id)){
                         console.log(element);
-                        tottalAmount = tottalAmount + (parseInt(products_qty_in_cart[index]) * element.sale_price);
+                        tottalAmount = parseInt(tottalAmount) + (parseInt(products_qty_in_cart[index]) * parseInt(element.sale_price));
                         return false;
 
                     }
@@ -285,7 +285,7 @@
             $('#grossTotalAmmount').html(grossTotal);
             $('#preBalance').html(preBalance);
             $('#discountAmmount').html(discount);
-            $('#totalAmmount').html( (grossTotal-discount) +preBalance);
+            $('#totalAmmount').html( parseInt((grossTotal-discount)) + parseInt(preBalance));
             $('#ammount').val(grossTotal-discount);
             if(cashRecieved > 0){
                 $('#changeAmount').html(cashRecieved- (grossTotal-discount));
