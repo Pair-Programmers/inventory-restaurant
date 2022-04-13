@@ -39,7 +39,7 @@
             </li>
 
 
-            <li>
+            <li class="@if (request()->is('admin/product*'))  {{'active'}} @else {{''}} @endif">
                 <a href="{{ route('admin.product.index') }}">
                     <i class="fa fa-cube"></i> <span class="nav-label">Products</span><span class="fa arrow"></span>
                 </a>
@@ -50,7 +50,7 @@
                 </ul>
             </li>
 
-            <li>
+            <li class="@if (request()->is('admin/sale_invoice*'))  {{'active'}} @else {{''}} @endif">
                 <a href="{{ route('admin.sale_invoice.index') }}">
                     <i class="fa fa-arrow-circle-up"></i> <span class="nav-label">Sale Invoice</span><span class="fa arrow"></span>
                 </a>
@@ -60,7 +60,7 @@
                 </ul>
             </li>
 
-            <li>
+            <li class="@if (request()->is('admin/customer*'))  {{'active'}} @else {{''}} @endif">
                 <a href="{{ route('admin.customer.index') }}">
                     <i class="fa fa-user"></i> <span class="nav-label">Customers</span><span class="fa arrow"></span>
                 </a>
@@ -75,7 +75,7 @@
 
 
 
-            <li>
+            <li class="@if (request()->is('admin/purchase_invoice*'))  {{'active'}} @else {{''}} @endif">
                 <a href="{{ route('admin.purchase_invoice.index') }}">
                     <i class="fa fa-arrow-circle-down"></i> <span class="nav-label">Purchase Invoice</span><span class="fa arrow"></span>
                 </a>
@@ -87,7 +87,7 @@
 
 
 
-            <li>
+            <li class="@if (request()->is('admin/vendor*'))  {{'active'}} @else {{''}} @endif">
                 <a href="{{ route('admin.vendor.index') }}">
                     <i class="fa fa-user"></i> <span class="nav-label">Vendors</span><span class="fa arrow"></span>
                 </a>
@@ -97,17 +97,18 @@
                 </ul>
             </li>
 
-            <li>
+            <li class="@if (request()->is('admin/payment*'))  {{'active'}} @else {{''}} @endif">
                 <a href="{{ route('admin.payment.index') }}">
                     <i class="fa fa-money"></i> <span class="nav-label">Payments</span><span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level collapse">
-                    <li><a href="{{ route('admin.payment.create') }}">Make Payment</a></li>
+                    <li><a href="{{ route('admin.payment.create.recieve') }}">Recieve Payment</a></li>
+                    <li><a href="{{ route('admin.payment.create.make') }}">Make Payment</a></li>
                     <li><a href="{{ route('admin.payment.index') }}">List / Report</a></li>
                 </ul>
             </li>
 
-            <li>
+            <li class="@if (request()->is('admin/expense*'))  {{'active'}} @else {{''}} @endif">
                 <a href="{{ route('admin.expense.index') }}">
                     <i class="fa fa-area-chart"></i> <span class="nav-label">Expenses</span><span class="fa arrow"></span>
                 </a>
