@@ -134,6 +134,9 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>Product Name</th>
+                                                <th>Meter</th>
+                                                <th>Ghaz</th>
+                                                <th>KG</th>
                                                 <th>Price</th>
                                                 <th>Qty</th>
                                                 <th>Amount</th>
@@ -235,6 +238,9 @@
                     $('#productTableBody').append(`<tr id="row-${counter}">
                                                     <td>${counter}</td>
                                                     <td>${products[productIndex].name}</td>
+                                                    <td>${products[productIndex].meter}</td>
+                                                    <td>${products[productIndex].ghaz}</td>
+                                                    <td>${products[productIndex].kg}</td>
                                                     <td>${products[productIndex].sale_price}</td>
                                                     <td>${productQty}</td>
                                                     <td>${productQty*products[productIndex].sale_price}</td>
