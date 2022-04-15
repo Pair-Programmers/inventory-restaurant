@@ -96,12 +96,16 @@
                     <td class="center">{{$payment->cnic}}</td>
 
                     <td>
+                        @if ($payment->type != 'Customer Payment' && $payment->type != 'Vendor Payment')
+                        @else
                         <a href="{{ route('admin.payment.edit', $payment->id) }}">
                             <small class="label label-primary"><i class="fa"></i>Edit</small>
                         </a>
                         <a onclick="deletePayment({{$payment->id}})">
                             <small class="label label-danger"><i class="fa"></i>Delete</small>
                         </a>
+                        @endif
+
                     </td>
                 </tr>
 
