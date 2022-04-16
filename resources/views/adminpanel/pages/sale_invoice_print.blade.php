@@ -19,7 +19,7 @@
 <body class="white-bg" >
     <div class="ibox-content p-xl">
         <div class="row text-center">
-            <img src="{{ asset('storage') }}/images/logo-asif.jpg" alt="logo-asif-fabric">
+            <img src="{{ asset('adminpanel') }}/img/logo-asif.jpg" alt="logo-asif-fabric">
         </div>
         <div class="row ">
             <div class="col-sm-4  " >
