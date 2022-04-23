@@ -293,7 +293,7 @@ class InvoiceController extends Controller
             if($payment){
                 $customer = Customer::find($invoice->customer_id);
                 if($customer->type == 'Credit'){
-                    $customer->balance = $customer->balance + $payment->amount;
+                    $customer->balance = $customer->balance - $payment->amount;
                     $customer->save();
                 }
                 $payment->delete();
